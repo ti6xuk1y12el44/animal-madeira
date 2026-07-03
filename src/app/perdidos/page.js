@@ -37,7 +37,6 @@ export default async function PerdidosPage({ searchParams }) {
       <section className="mx-auto max-w-6xl px-5 py-16 md:py-20">
         <div className="grid gap-10 lg:grid-cols-[1fr_280px]">
           <div>
-            {/* TABS */}
             <div className="mb-8 flex gap-2">
               {[
                 { value: "todos", label: "Todos" },
@@ -65,7 +64,6 @@ export default async function PerdidosPage({ searchParams }) {
               </span>
             </div>
 
-            {/* LISTA */}
             {count > 0 ? (
               <div className="space-y-3">
                 {listings.map((item) => (
@@ -76,7 +74,7 @@ export default async function PerdidosPage({ searchParams }) {
                     <div className="flex h-16 w-16 shrink-0 items-center justify-center rounded-2xl bg-green-light text-2xl">
                       {item.species === "dog" ? "🐕" : "🐈"}
                     </div>
-                    <div className="flex-1">
+                    <div className="flex-1 min-w-0">
                       <div className="flex items-center gap-2">
                         <span
                           className={`rounded-full px-2.5 py-0.5 text-[10px] font-bold uppercase tracking-wide ${
@@ -92,16 +90,12 @@ export default async function PerdidosPage({ searchParams }) {
                         </span>
                       </div>
                       <h3 className="mt-1 font-display text-base font-semibold">{item.title}</h3>
-                      <p className="mt-0.5 text-[13px] text-ink/40">
-                        {item.parish} {item.description ? `· ${item.description}` : ""}
+                      <p className="mt-0.5 text-[13px] text-ink/40 truncate">
+                        {item.parish}
+                        {item.description ? ` · ${item.description}` : ""}
                       </p>
                     </div>
-                    
-                      href={`tel:${item.contact_phone}`}
-                      className="shrink-0 rounded-full bg-ink px-4 py-2 text-[12px] font-semibold text-white transition hover:bg-green-dark"
-                    <a>
-                      Ligar
-                    </a>
+                    <CallButton phone={item.contact_phone} />
                   </div>
                 ))}
               </div>
@@ -113,7 +107,6 @@ export default async function PerdidosPage({ searchParams }) {
             )}
           </div>
 
-          {/* SIDEBAR */}
           <aside className="space-y-4">
             <div className="rounded-2xl bg-ink p-6 text-white">
               <h3 className="font-display text-sm font-bold">Perdi o meu animal</h3>
@@ -143,5 +136,16 @@ export default async function PerdidosPage({ searchParams }) {
         </div>
       </section>
     </main>
+  );
+}
+function CallButton({ phone }) {
+  const url = "tel:" + phone;
+  return (
+    <a
+      href={url}
+      className="shrink-0 rounded-full bg-ink px-4 py-2 text-[12px] font-semibold text-white transition hover:bg-green-dark"
+    >
+      Ligar
+    </a>
   );
 }
