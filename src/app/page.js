@@ -11,151 +11,168 @@ export default async function Home() {
     .order("created_at", { ascending: false })
     .limit(4);
 
+  const { count } = await supabase
+    .from("animals")
+    .select("*", { count: "exact", head: true })
+    .eq("adopted", false);
+
+  const { count: shelterCount } = await supabase
+    .from("shelters")
+    .select("*", { count: "exact", head: true });
+
   return (
     <main>
-      <section className="relative min-h-[94vh] overflow-hidden bg-ink">
+      {/* HERO */}
+      <section className="relative min-h-[92vh] overflow-hidden">
         <img
           src="https://images.unsplash.com/photo-1587300003388-59208cc962cb?w=1600&h=1000&fit=crop&crop=faces"
-          alt="Cão na Madeira"
-          className="absolute inset-0 h-full w-full object-cover opacity-35"
+          alt="Cao na Madeira"
+          className="absolute inset-0 h-full w-full object-cover"
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-ink via-ink/50 to-ink/20" />
-        <div className="relative mx-auto flex min-h-[94vh] max-w-6xl flex-col justify-end px-5 pb-20">
-          <p className="mb-4 text-[11px] font-semibold uppercase tracking-[.2em] text-green">
-            Madeira Friends
-          </p>
-          <h1 className="max-w-[11ch] font-display text-6xl font-bold leading-[1] tracking-tight text-white sm:text-7xl md:text-8xl lg:text-9xl">
-            Cada animal merece<span className="text-green">.</span>
+        <div className="absolute inset-0 bg-gradient-to-t from-green-900 via-green-900/70 to-green-900/30" />
+        <div className="relative mx-auto flex min-h-[92vh] max-w-6xl flex-col justify-end px-5 pb-16">
+          <div className="mb-5 flex items-center gap-2">
+            <div className="h-px w-8 bg-gold" />
+            <span className="text-[11px] font-semibold uppercase tracking-[.2em] text-gold">
+              Ilha da Madeira
+            </span>
+          </div>
+          <h1 className="max-w-[12ch] font-display text-5xl font-bold leading-[1.02] tracking-tight text-white sm:text-6xl md:text-7xl lg:text-8xl">
+            Cada animal merece<span className="text-gold">.</span>
           </h1>
-          <p className="mt-6 max-w-[48ch] text-base leading-relaxed text-white/50 md:text-lg">
-            Adoção, esterilização, voluntariado e denúncias para todos os animais da Madeira — num só lugar.
+          <p className="mt-5 max-w-[46ch] text-[15px] leading-relaxed text-white/50 md:text-base">
+            Adocao, esterilizacao, voluntariado e denuncias — toda a ilha, um so lugar.
           </p>
-          <div className="mt-10 flex flex-wrap gap-3">
+          <div className="mt-8 flex flex-wrap gap-3">
             <Link
               href="/adotar"
-              className="rounded-full bg-white px-7 py-3.5 text-sm font-semibold text-ink transition hover:bg-green hover:text-white"
+              className="rounded-full bg-white px-7 py-3.5 text-sm font-semibold text-green-900 transition hover:bg-gold hover:text-white"
             >
               Adotar um animal
             </Link>
             <Link
               href="/emergencia"
-              className="rounded-full border border-white/25 px-7 py-3.5 text-sm font-semibold text-white transition hover:bg-white/10"
+              className="rounded-full border border-white/20 px-7 py-3.5 text-sm font-semibold text-white transition hover:bg-white/10"
             >
-              Emergência
+              Emergencia
             </Link>
           </div>
-          <div className="mt-20 flex gap-16 border-t border-white/10 pt-8">
+          <div className="mt-16 flex gap-14 border-t border-white/10 pt-6">
             {[
-              { n: "68", l: "animais à espera" },
-              { n: "28", l: "organizações" },
+              { n: count || 0, l: "animais a espera" },
+              { n: shelterCount || 0, l: "organizacoes" },
               { n: "11", l: "concelhos" },
             ].map((s) => (
               <div key={s.l}>
-                <div className="font-display text-3xl font-bold text-white md:text-4xl">{s.n}</div>
-                <div className="mt-1 text-[13px] text-white/35">{s.l}</div>
+                <div className="font-display text-2xl font-bold text-white md:text-3xl">{s.n}</div>
+                <div className="mt-1 text-[12px] text-white/30">{s.l}</div>
               </div>
             ))}
           </div>
         </div>
       </section>
 
-      <section className="mx-auto max-w-6xl px-5 py-24 md:py-32">
-        <h2 className="mb-3 font-display text-3xl font-bold tracking-tight md:text-4xl">
+      {/* ACOES */}
+      <section className="mx-auto max-w-6xl px-5 py-24 md:py-28">
+        <h2 className="mb-3 font-display text-2xl font-bold tracking-tight md:text-3xl">
           Como queres ajudar?
         </h2>
-        <p className="mb-14 max-w-[50ch] text-[15px] text-ink/50">
-          Escolhe o que faz sentido para ti. Cada ação conta.
+        <p className="mb-12 max-w-[48ch] text-[14px] text-ink/40">
+          Escolhe o que faz sentido para ti.
         </p>
-        <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+        <div className="grid gap-px overflow-hidden rounded-2xl border border-line bg-line sm:grid-cols-2 lg:grid-cols-3">
           {[
-            { href: "/adotar", label: "Adotar", sub: "Cães e gatos à espera de uma família.", style: "bg-green text-white" },
-            { href: "/esterilizar", label: "Esterilizar", sub: "Campanhas e clínicas em cada concelho.", style: "bg-ink text-white" },
-            { href: "/voluntariar", label: "Voluntariar", sub: "Acolhe, transporta ou dá o teu tempo.", style: "bg-white border border-line" },
-            { href: "/denunciar", label: "Denunciar", sub: "Abandono ou maus-tratos. Sempre confidencial.", style: "bg-white border border-line" },
-            { href: "/emergencia", label: "Emergência", sub: "Contactos certos para cada situação.", style: "bg-green-light" },
-            { href: "/perdidos", label: "Perdidos & Achados", sub: "Ajuda a reunir animais às suas famílias.", style: "bg-white border border-line" },
-          ].map((a) => {
-            const isDark = a.style.includes("bg-green ") || a.style.includes("bg-ink");
-            return (
-              <Link
-                key={a.href}
-                href={a.href}
-                className={`group flex items-start justify-between gap-4 rounded-2xl p-7 transition hover:-translate-y-0.5 hover:shadow-md ${a.style}`}
-              >
-                <div>
-                  <h3 className="font-display text-lg font-semibold">{a.label}</h3>
-                  <p className={`mt-2 text-[13px] leading-relaxed ${isDark ? "text-white/55" : "text-ink/45"}`}>
-                    {a.sub}
-                  </p>
-                </div>
-                <span className={`mt-1 shrink-0 text-lg transition group-hover:translate-x-1 ${isDark ? "text-white/40" : "text-ink/25"}`}>
-                  →
-                </span>
-              </Link>
-            );
-          })}
+            { href: "/adotar", label: "Adotar", sub: "Caes e gatos a espera de familia.", accent: "text-green-600" },
+            { href: "/esterilizar", label: "Esterilizar", sub: "Campanhas e clinicas por concelho.", accent: "text-green-600" },
+            { href: "/voluntariar", label: "Voluntariar", sub: "Acolhe, transporta ou da tempo.", accent: "text-green-600" },
+            { href: "/denunciar", label: "Denunciar", sub: "Abandono ou maus-tratos.", accent: "text-gold" },
+            { href: "/emergencia", label: "Emergencia", sub: "Quem contactar, o que fazer.", accent: "text-gold" },
+            { href: "/perdidos", label: "Perdidos & Achados", sub: "Reunir animais e familias.", accent: "text-green-600" },
+          ].map((a) => (
+            <Link
+              key={a.href}
+              href={a.href}
+              className="group flex items-start justify-between gap-4 bg-white p-7 transition hover:bg-green-50"
+            >
+              <div>
+                <h3 className={`font-display text-base font-semibold ${a.accent}`}>{a.label}</h3>
+                <p className="mt-1.5 text-[13px] text-ink/35">{a.sub}</p>
+              </div>
+              <span className="mt-0.5 shrink-0 text-ink/15 transition group-hover:translate-x-1 group-hover:text-green-600">→</span>
+            </Link>
+          ))}
         </div>
       </section>
 
-      <section className="bg-white py-24 md:py-32">
+      {/* ANIMAIS */}
+      <section className="bg-green-50 py-24 md:py-28">
         <div className="mx-auto max-w-6xl px-5">
-          <div className="mb-14 flex flex-wrap items-end justify-between gap-4">
+          <div className="mb-12 flex flex-wrap items-end justify-between gap-4">
             <div>
-              <p className="mb-2 text-[11px] font-semibold uppercase tracking-[.15em] text-green">Adoção</p>
-              <h2 className="font-display text-3xl font-bold tracking-tight md:text-4xl">
-                À espera de casa
+              <div className="mb-2 flex items-center gap-2">
+                <div className="h-px w-6 bg-gold" />
+                <span className="text-[11px] font-semibold uppercase tracking-[.15em] text-gold">Adocao</span>
+              </div>
+              <h2 className="font-display text-2xl font-bold tracking-tight md:text-3xl">
+                A espera de casa
               </h2>
             </div>
             <Link
               href="/adotar"
-              className="rounded-full border border-line px-5 py-2.5 text-[13px] font-semibold transition hover:border-ink"
+              className="text-[13px] font-semibold text-green-600 transition hover:text-green-700"
             >
               Ver todos →
             </Link>
           </div>
-          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+          <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
             {animals?.map((a) => <AnimalCard key={a.id} animal={a} />)}
             {(!animals || animals.length === 0) && (
-              <p className="col-span-full py-20 text-center text-[15px] text-ink/40">
-                Sem animais de momento.
+              <p className="col-span-full py-20 text-center text-[14px] text-ink/30">
+                Sem animais na base de dados de momento.
               </p>
             )}
           </div>
         </div>
       </section>
 
-      <section className="mx-auto max-w-6xl px-5 py-24 md:py-32">
+      {/* DENUNCIA + ESTER */}
+      <section className="mx-auto max-w-6xl px-5 py-24 md:py-28">
         <div className="grid gap-4 md:grid-cols-5">
-          <div className="relative overflow-hidden rounded-3xl bg-ink px-8 py-14 text-white md:col-span-3 md:px-12">
-            <div className="absolute -right-20 -top-20 h-72 w-72 rounded-full bg-green/15 blur-[80px]" />
-            <div className="absolute -left-10 bottom-0 h-48 w-48 rounded-full bg-white/5 blur-[60px]" />
+          <div className="relative overflow-hidden rounded-2xl bg-green-800 px-8 py-12 text-white md:col-span-3 md:px-10">
+            <div className="absolute -right-16 -top-16 h-64 w-64 rounded-full bg-gold/10 blur-[60px]" />
             <div className="relative">
-              <p className="mb-3 text-[11px] font-semibold uppercase tracking-[.15em] text-green">Denúncia confidencial</p>
-              <h2 className="font-display text-3xl font-bold md:text-4xl">
+              <div className="mb-4 flex items-center gap-2">
+                <div className="h-px w-6 bg-gold" />
+                <span className="text-[11px] font-semibold uppercase tracking-[.15em] text-gold">Confidencial</span>
+              </div>
+              <h2 className="font-display text-2xl font-bold md:text-3xl">
                 Viste um animal em risco?
               </h2>
-              <p className="mt-4 max-w-[42ch] text-[15px] leading-relaxed text-white/45">
-                A tua informação é encaminhada diretamente para as autoridades com poder de agir. A tua identidade fica protegida.
+              <p className="mt-3 max-w-[40ch] text-[14px] leading-relaxed text-white/40">
+                A tua denuncia segue diretamente para as autoridades com poder de agir. A tua identidade fica protegida.
               </p>
               <Link
                 href="/denunciar"
-                className="mt-10 inline-block rounded-full bg-white px-7 py-3.5 text-sm font-semibold text-ink transition hover:bg-green hover:text-white"
+                className="mt-8 inline-block rounded-full bg-white px-6 py-3 text-[13px] font-semibold text-green-800 transition hover:bg-gold hover:text-white"
               >
-                Fazer denúncia
+                Fazer denuncia
               </Link>
             </div>
           </div>
-          <div className="flex flex-col justify-between rounded-3xl border border-line bg-white px-8 py-14 md:col-span-2">
+          <div className="flex flex-col justify-between rounded-2xl border border-line bg-white px-8 py-12 md:col-span-2">
             <div>
-              <p className="mb-3 text-[11px] font-semibold uppercase tracking-[.15em] text-green">Prevenção</p>
-              <h2 className="font-display text-2xl font-bold">Esterilização</h2>
-              <p className="mt-4 text-[15px] leading-relaxed text-ink/50">
-                Campanhas ativas, clínicas e apoio financeiro em cada concelho.
+              <div className="mb-4 flex items-center gap-2">
+                <div className="h-px w-6 bg-green-400" />
+                <span className="text-[11px] font-semibold uppercase tracking-[.15em] text-green-600">Prevencao</span>
+              </div>
+              <h2 className="font-display text-xl font-bold">Esterilizacao</h2>
+              <p className="mt-3 text-[14px] leading-relaxed text-ink/40">
+                Campanhas ativas, clinicas e apoio em cada concelho da ilha.
               </p>
             </div>
             <Link
               href="/esterilizar"
-              className="mt-10 inline-block w-fit rounded-full bg-green px-7 py-3.5 text-sm font-semibold text-white transition hover:bg-green-dark"
+              className="mt-8 inline-block w-fit rounded-full bg-green-800 px-6 py-3 text-[13px] font-semibold text-white transition hover:bg-green-700"
             >
               Ver campanhas
             </Link>
@@ -163,36 +180,40 @@ export default async function Home() {
         </div>
       </section>
 
-      <section className="border-y border-line bg-white py-24 md:py-32">
+      {/* ABRIGOS */}
+      <section className="border-y border-line bg-white py-24 md:py-28">
         <div className="mx-auto max-w-6xl px-5">
-          <div className="grid items-center gap-16 md:grid-cols-2">
+          <div className="grid items-center gap-14 md:grid-cols-2">
             <div>
-              <p className="mb-3 text-[11px] font-semibold uppercase tracking-[.15em] text-green">Rede</p>
-              <h2 className="font-display text-3xl font-bold tracking-tight md:text-4xl">
-                28 organizações em toda a ilha
+              <div className="mb-4 flex items-center gap-2">
+                <div className="h-px w-6 bg-gold" />
+                <span className="text-[11px] font-semibold uppercase tracking-[.15em] text-gold">Rede</span>
+              </div>
+              <h2 className="font-display text-2xl font-bold tracking-tight md:text-3xl">
+                Organizacoes em toda a ilha
               </h2>
-              <p className="mt-4 max-w-[44ch] text-[15px] leading-relaxed text-ink/50">
-                Abrigos, associações e clínicas solidárias — quase todos geridos por voluntários e mantidos por donativos.
+              <p className="mt-3 max-w-[42ch] text-[14px] leading-relaxed text-ink/40">
+                Abrigos, associacoes e clinicas solidarias. Quase todos geridos por voluntarios e mantidos por donativos.
               </p>
               <Link
                 href="/abrigos"
-                className="mt-10 inline-block rounded-full bg-ink px-7 py-3.5 text-sm font-semibold text-white transition hover:bg-green-dark"
+                className="mt-8 inline-block rounded-full bg-green-800 px-6 py-3 text-[13px] font-semibold text-white transition hover:bg-green-700"
               >
                 Conhecer abrigos
               </Link>
             </div>
-            <div className="grid grid-cols-3 gap-3">
+            <div className="grid grid-cols-3 gap-2.5">
               {[
-                { abbr: "SPAD", bg: "bg-green text-white" },
-                { abbr: "CRO", bg: "bg-ink text-white" },
-                { abbr: "SDM", bg: "bg-green-light text-green" },
-                { abbr: "VLM", bg: "bg-green-light text-green" },
-                { abbr: "PF", bg: "bg-ink text-white" },
-                { abbr: "AAC", bg: "bg-green text-white" },
+                { abbr: "SPAD", bg: "bg-green-800 text-white" },
+                { abbr: "CRO", bg: "bg-green-100 text-green-700" },
+                { abbr: "SDM", bg: "bg-gold-light text-gold-dark" },
+                { abbr: "VLM", bg: "bg-green-100 text-green-700" },
+                { abbr: "PF", bg: "bg-green-800 text-white" },
+                { abbr: "AAC", bg: "bg-gold-light text-gold-dark" },
               ].map((o) => (
                 <div
                   key={o.abbr}
-                  className={`flex aspect-square items-center justify-center rounded-2xl font-display text-lg font-bold transition hover:-translate-y-0.5 hover:shadow-md ${o.bg}`}
+                  className={`flex aspect-square items-center justify-center rounded-xl font-display text-sm font-bold ${o.bg}`}
                 >
                   {o.abbr}
                 </div>
@@ -202,44 +223,47 @@ export default async function Home() {
         </div>
       </section>
 
-      <section className="mx-auto max-w-6xl px-5 py-24 md:py-32">
-        <div className="overflow-hidden rounded-3xl bg-green px-8 py-14 text-white md:flex md:items-center md:justify-between md:px-14 md:py-16">
-          <div className="max-w-lg">
-            <p className="mb-3 text-[11px] font-semibold uppercase tracking-[.2em] text-white/50">
-              Quem somos
-            </p>
-            <h2 className="font-display text-3xl font-bold md:text-4xl">
-              Uma iniciativa Madeira Friends.
+      {/* MADEIRA FRIENDS */}
+      <section className="mx-auto max-w-6xl px-5 py-24 md:py-28">
+        <div className="rounded-2xl bg-green-900 px-8 py-12 text-white md:flex md:items-center md:justify-between md:px-12 md:py-14">
+          <div className="max-w-md">
+            <div className="mb-3 flex items-center gap-2">
+              <div className="h-px w-6 bg-gold" />
+              <span className="text-[11px] font-semibold uppercase tracking-[.15em] text-gold">Madeira Friends</span>
+            </div>
+            <h2 className="font-display text-2xl font-bold md:text-3xl">
+              Feito pela comunidade, para a ilha.
             </h2>
-            <p className="mt-4 text-[15px] leading-relaxed text-white/55">
-              Comunidade independente de pessoas que vivem na ilha e trabalham juntas pelo bem-estar animal. Não somos abrigo nem autoridade — somos a ponte.
+            <p className="mt-3 text-[14px] leading-relaxed text-white/40">
+              Independente, sem fins lucrativos, movida a voluntarios. Nao somos abrigo nem autoridade — somos a ponte.
             </p>
           </div>
           <Link
             href="/sobre"
-            className="mt-8 inline-block rounded-full bg-white px-7 py-3.5 text-sm font-semibold text-ink transition hover:bg-paper md:mt-0"
+            className="mt-8 inline-block rounded-full border border-white/15 px-6 py-3 text-[13px] font-semibold text-white transition hover:border-gold hover:text-gold md:mt-0"
           >
             Saber mais
           </Link>
         </div>
       </section>
 
+      {/* NEWSLETTER */}
       <section className="border-t border-line">
-        <div className="mx-auto flex max-w-6xl flex-wrap items-center justify-between gap-6 px-5 py-12">
+        <div className="mx-auto flex max-w-6xl flex-wrap items-center justify-between gap-6 px-5 py-10">
           <div>
-            <h3 className="font-display text-lg font-bold">Fica a par</h3>
-            <p className="mt-1 text-[13px] text-ink/45">Campanhas e novidades, uma vez por mês.</p>
+            <h3 className="font-display text-base font-bold">Fica a par</h3>
+            <p className="mt-1 text-[13px] text-ink/35">Campanhas e novidades, uma vez por mes.</p>
           </div>
           <form className="flex gap-2" action="#">
             <input
               type="email"
               required
               placeholder="O teu email"
-              className="rounded-full border border-line bg-white px-5 py-2.5 text-sm text-ink outline-none transition focus:border-green"
+              className="rounded-full border border-line bg-white px-5 py-2.5 text-sm text-ink outline-none transition focus:border-green-400"
             />
             <button
               type="submit"
-              className="rounded-full bg-ink px-6 py-2.5 text-sm font-semibold text-white transition hover:bg-green-dark"
+              className="rounded-full bg-green-800 px-6 py-2.5 text-sm font-semibold text-white transition hover:bg-green-700"
             >
               Subscrever
             </button>

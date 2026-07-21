@@ -3,20 +3,25 @@
 @theme {
   --font-display: "Space Grotesk", system-ui, sans-serif;
   --font-body: "DM Sans", system-ui, sans-serif;
-  --color-ink: #1A1A19;
-  --color-ink-50: rgba(26,26,25,.55);
-  --color-paper: #FAFAF7;
-  --color-green: #1B6B4A;
-  --color-green-light: #E8F0EB;
-  --color-green-dark: #134F36;
-  --color-line: rgba(26,26,25,.1);
+  --color-ink: #141C1A;
+  --color-ink-50: rgba(20,28,26,.5);
+  --color-paper: #F8FAF8;
+  --color-green-50: #F0F5F1;
+  --color-green-100: #DCE8DE;
+  --color-green-200: #B5CFBA;
+  --color-green-400: #4A9B6A;
+  --color-green-500: #2D7A50;
+  --color-green-600: #1B6B4A;
+  --color-green-700: #145A3A;
+  --color-green-800: #0F3D28;
+  --color-green-900: #0A2B1C;
+  --color-gold: #C8963E;
+  --color-gold-light: #FAF3E6;
+  --color-gold-dark: #A67B2E;
+  --color-line: rgba(20,28,26,.08);
   --color-white: #FFFFFF;
 }
 
 * { box-sizing: border-box; }
 body { font-family: var(--font-body); background: var(--color-paper); color: var(--color-ink); }
-::selection { background: var(--color-green); color: #fff; }
-
-@keyframes marquee {
-  to { transform: translateX(-50%); }
-}
+::selection { background: var(--color-green-600); color: #fff; }

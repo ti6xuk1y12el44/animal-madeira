@@ -6,76 +6,67 @@ export async function generateMetadata({ params }) {
   const { slug } = await params;
   const supabase = supabasePublic();
   const { data } = await supabase
-    .from("animals")
+    .from("clinics")
     .select("name")
     .eq("slug", slug)
     .single();
 
-  return { title: data ? `${data.name} · Animal Madeira` : "Animal nao encontrado" };
+  return { title: data ? `${data.name} · Clinicas Madeira` : "Clinica não encontrada" };
 }
 
-export default async function AnimalPage({ params }) {
+export default async function ClinicPage({ params }) {
   const { slug } = await params;
   const supabase = supabasePublic();
 
-  const { data: animal, error } = await supabase
-    .from("animals")
-    .select("*, shelters(name, parish, phone, email)")
+  const { data: clinic, error } = await supabase
+    .from("clinics")
+    .select("*, clinics(name, parish, description,phone, email)")
     .eq("slug", slug)
     .single();
 
-  if (error || !animal) notFound();
-
-  const age =
-    animal.age_months < 12
-      ? `${animal.age_months} meses`
-      : `${Math.floor(animal.age_months / 12)} ${Math.floor(animal.age_months / 12) === 1 ? "ano" : "anos"}`;
-
-  const sizeLabel = { small: "Pequeno", medium: "Medio", large: "Grande" }[animal.size] || null;
+  if (error || !clinic) notFound();
 
   return (
     <main>
       <div className="mx-auto max-w-6xl px-5 py-8">
         <Link href="/adotar" className="text-[13px] font-semibold text-ink/40 transition hover:text-ink">
-          ← Voltar a todos os animais
+          ← Voltar a todas as clinicas
         </Link>
       </div>
 
       <section className="mx-auto max-w-6xl px-5 pb-24 md:pb-32">
-        <div className="grid gap-10 md:grid-cols-2"
+        <div className="grid gap-10 md:grid-cols-2">
           <div className="relative aspect-[3/4] overflow-hidden rounded-3xl bg-green-light">
-            {animal.photos?.[0] ? (
+            {clinic.photos?.[0] ? (
               <img
-                src={animal.photos[0]}
-                alt={animal.name}
+                src={clinic.photos[0]}
+                alt={clinic.name}
                 className="h-full w-full object-cover"
               />
             ) : (
               <div className="flex h-full items-center justify-center font-display text-6xl font-bold text-green/20">
-                {animal.name[0]}
+                {clinic.name[0]}
               </div>
             )}
-            {animal.urgent && (
+            {clinic.urgent && (
               <span className="absolute left-4 top-4 rounded-full bg-ink px-3 py-1.5 text-[11px] font-bold uppercase tracking-wide text-white">
                 Adocao urgente
               </span>
             )}
           </div>
 
-          {/* INFO */}
           <div className="flex flex-col">
             <div className="flex items-center gap-3">
               <h1 className="font-display text-4xl font-bold tracking-tight md:text-5xl">
-                {animal.name}
+                {clinic.name}
               </h1>
-              <span className="text-2xl text-ink/30">{animal.sex === "f" ? "♀" : "♂"}</span>
+              <span className="text-2xl text-ink/30">{clinic.sex === "f" ? "♀" : "♂"}</span>
             </div>
 
             <p className="mt-2 text-[15px] text-ink/50">
               {animal.species === "dog" ? "Cao" : "Gato"} · {age} · {animal.shelters?.parish}
             </p>
 
-            {/* TAGS */}
             <div className="mt-5 flex flex-wrap gap-2">
               {animal.sterilised && (
                 <span className="rounded-full bg-green-light px-3 py-1.5 text-[12px] font-semibold text-green">
@@ -150,7 +141,6 @@ export default async function AnimalPage({ params }) {
               </div>
             </div>
 
-            {/* ACOES */}
             <div className="mt-8 flex flex-wrap gap-3">
               {animal.shelters?.phone && (
                 <CallShelter phone={animal.shelters.phone} />
@@ -164,6 +154,7 @@ export default async function AnimalPage({ params }) {
               Contacta o abrigo diretamente para saber mais sobre o processo de adocao.
             </p>
           </div>
+        </div>
       </section>
     </main>
   );

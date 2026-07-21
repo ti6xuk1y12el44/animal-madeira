@@ -8,7 +8,7 @@ export default function AnimalCard({ animal }) {
 
   return (
     <Link href={`/adotar/${animal.slug}`} className="group block">
-      <div className="relative aspect-[3/4] overflow-hidden rounded-2xl bg-green-light">
+      <div className="relative aspect-[3/4] overflow-hidden rounded-2xl bg-green-100">
         {animal.photos?.[0] ? (
           <img
             src={animal.photos[0]}
@@ -16,24 +16,24 @@ export default function AnimalCard({ animal }) {
             className="h-full w-full object-cover transition duration-700 group-hover:scale-[1.03]"
           />
         ) : (
-          <div className="flex h-full items-center justify-center font-display text-4xl font-bold text-green/20">
+          <div className="flex h-full items-center justify-center font-display text-4xl font-bold text-green-400/30">
             {animal.name[0]}
           </div>
         )}
         {animal.urgent && (
-          <span className="absolute left-3 top-3 rounded-full bg-ink px-2.5 py-1 text-[10px] font-bold uppercase tracking-wide text-white">
+          <span className="absolute left-3 top-3 rounded-full bg-gold px-2.5 py-1 text-[10px] font-bold uppercase tracking-wide text-white">
             Urgente
           </span>
         )}
       </div>
       <div className="mt-4 flex items-baseline justify-between gap-2">
-        <h3 className="font-display text-lg font-semibold group-hover:text-green transition">{animal.name}</h3>
-        <span className="text-xs text-ink-50">{animal.sex === "f" ? "♀" : "♂"}</span>
+        <h3 className="font-display text-base font-semibold transition group-hover:text-green-600">{animal.name}</h3>
+        <span className="text-xs text-ink/30">{animal.sex === "f" ? "♀" : "♂"}</span>
       </div>
-      <p className="mt-0.5 text-[13px] text-ink-50">
-        {animal.species === "dog" ? "Cão" : "Gato"} · {age}
+      <p className="mt-0.5 text-[13px] text-ink/40">
+        {animal.species === "dog" ? "Cao" : "Gato"} · {age}
       </p>
-      <p className="mt-0.5 text-[13px] text-ink-50">{animal.shelters?.name}</p>
+      <p className="mt-0.5 text-[13px] text-ink/40">{animal.shelters?.name}</p>
     </Link>
   );
 }
