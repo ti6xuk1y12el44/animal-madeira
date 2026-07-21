@@ -59,9 +59,9 @@ export default async function Home() {
           </div>
           <div className="mt-16 flex gap-14 border-t border-white/10 pt-6">
             {[
-              { n: count || 0, l: "animais a espera" },
-              { n: shelterCount || 0, l: "organizacoes" },
-              { n: "11", l: "concelhos" },
+              { n: "Centenas", l: "animais a procura de familia" },
+              { n: "Toda a ilha", l: "abrigos participantes" },
+              { n: "11", l: "municipios cobertos" },
             ].map((s) => (
               <div key={s.l}>
                 <div className="font-display text-2xl font-bold text-white md:text-3xl">{s.n}</div>

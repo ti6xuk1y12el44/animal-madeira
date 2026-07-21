@@ -1,179 +1,149 @@
 import Link from "next/link";
 import { supabasePublic } from "@/lib/supabase/server";
 import { notFound } from "next/navigation";
+import AnimalCard from "@/components/AnimalCard";
 
 export async function generateMetadata({ params }) {
   const { slug } = await params;
   const supabase = supabasePublic();
-  const { data } = await supabase
-    .from("clinics")
-    .select("name")
-    .eq("slug", slug)
-    .single();
-
-  return { title: data ? `${data.name} · Clinicas Madeira` : "Clinica não encontrada" };
+  const { data } = await supabase.from("shelters").select("name").eq("slug", slug).single();
+  return { title: data ? `${data.name} · Animal Madeira` : "Abrigo nao encontrado" };
 }
 
-export default async function ClinicPage({ params }) {
+export default async function ShelterPage({ params }) {
   const { slug } = await params;
   const supabase = supabasePublic();
 
-  const { data: clinic, error } = await supabase
-    .from("clinics")
-    .select("*, clinics(name, parish, description,phone, email)")
+  const { data: shelter, error } = await supabase
+    .from("shelters")
+    .select("*")
     .eq("slug", slug)
     .single();
 
-  if (error || !clinic) notFound();
+  if (error || !shelter) notFound();
+
+  const { data: animals } = await supabase
+    .from("animals")
+    .select("*, shelters(name, parish)")
+    .eq("shelter_id", shelter.id)
+    .eq("adopted", false)
+    .order("created_at", { ascending: false });
+
+  const typeLabels = {
+    associacao: "Associacao",
+    canil_municipal: "Canil municipal",
+    clinica: "Clinica solidaria",
+  };
 
   return (
     <main>
       <div className="mx-auto max-w-6xl px-5 py-8">
-        <Link href="/adotar" className="text-[13px] font-semibold text-ink/40 transition hover:text-ink">
-          ← Voltar a todas as clinicas
+        <Link href="/abrigos" className="text-[13px] font-semibold text-ink/40 transition hover:text-ink">
+          ← Voltar aos abrigos
         </Link>
       </div>
 
-      <section className="mx-auto max-w-6xl px-5 pb-24 md:pb-32">
-        <div className="grid gap-10 md:grid-cols-2">
-          <div className="relative aspect-[3/4] overflow-hidden rounded-3xl bg-green-light">
-            {clinic.photos?.[0] ? (
-              <img
-                src={clinic.photos[0]}
-                alt={clinic.name}
-                className="h-full w-full object-cover"
-              />
-            ) : (
-              <div className="flex h-full items-center justify-center font-display text-6xl font-bold text-green/20">
-                {clinic.name[0]}
-              </div>
-            )}
-            {clinic.urgent && (
-              <span className="absolute left-4 top-4 rounded-full bg-ink px-3 py-1.5 text-[11px] font-bold uppercase tracking-wide text-white">
-                Adocao urgente
-              </span>
-            )}
-          </div>
-
-          <div className="flex flex-col">
-            <div className="flex items-center gap-3">
-              <h1 className="font-display text-4xl font-bold tracking-tight md:text-5xl">
-                {clinic.name}
-              </h1>
-              <span className="text-2xl text-ink/30">{clinic.sex === "f" ? "♀" : "♂"}</span>
-            </div>
-
-            <p className="mt-2 text-[15px] text-ink/50">
-              {animal.species === "dog" ? "Cao" : "Gato"} · {age} · {animal.shelters?.parish}
-            </p>
-
-            <div className="mt-5 flex flex-wrap gap-2">
-              {animal.sterilised && (
-                <span className="rounded-full bg-green-light px-3 py-1.5 text-[12px] font-semibold text-green">
-                  Esterilizado
-                </span>
-              )}
-              {animal.vaccinated && (
-                <span className="rounded-full bg-green-light px-3 py-1.5 text-[12px] font-semibold text-green">
-                  Vacinado
-                </span>
-              )}
-              {sizeLabel && (
-                <span className="rounded-full border border-line px-3 py-1.5 text-[12px] font-semibold text-ink/50">
-                  {sizeLabel}
-                </span>
-              )}
-              {animal.species === "dog" && (
-                <span className="rounded-full border border-line px-3 py-1.5 text-[12px] font-semibold text-ink/50">
-                  {animal.sex === "f" ? "Cadela" : "Cao"}
-                </span>
-              )}
-              {animal.species === "cat" && (
-                <span className="rounded-full border border-line px-3 py-1.5 text-[12px] font-semibold text-ink/50">
-                  {animal.sex === "f" ? "Gata" : "Gato"}
-                </span>
-              )}
-            </div>
-
-            {/* DESCRICAO */}
-            {animal.description && (
-              <div className="mt-8">
-                <h2 className="font-display text-base font-bold">Sobre</h2>
-                <p className="mt-2 max-w-[50ch] text-[15px] leading-relaxed text-ink/50">
-                  {animal.description}
-                </p>
-              </div>
-            )}
-
-            <div className="mt-8 grid grid-cols-2 gap-3">
-              <div className="rounded-xl border border-line p-4">
-                <span className="text-[11px] font-semibold uppercase tracking-[.12em] text-ink/30">Idade</span>
-                <p className="mt-1 font-display text-base font-semibold">{age}</p>
-              </div>
-              <div className="rounded-xl border border-line p-4">
-                <span className="text-[11px] font-semibold uppercase tracking-[.12em] text-ink/30">Sexo</span>
-                <p className="mt-1 font-display text-base font-semibold">{animal.sex === "f" ? "Femea" : "Macho"}</p>
-              </div>
-              {sizeLabel && (
-                <div className="rounded-xl border border-line p-4">
-                  <span className="text-[11px] font-semibold uppercase tracking-[.12em] text-ink/30">Porte</span>
-                  <p className="mt-1 font-display text-base font-semibold">{sizeLabel}</p>
+      <section className="mx-auto max-w-6xl px-5 pb-24">
+        <div className="grid gap-10 md:grid-cols-[1fr_320px]">
+          {/* INFO */}
+          <div>
+            <div className="flex items-start gap-5">
+              {shelter.logo_url ? (
+                <img src={shelter.logo_url} alt={shelter.name} className="h-16 w-16 rounded-xl object-contain" />
+              ) : (
+                <div className="flex h-16 w-16 shrink-0 items-center justify-center rounded-xl bg-green-800 font-display text-lg font-bold text-white">
+                  {shelter.name.split(" ").map((w) => w[0]).join("").slice(0, 2)}
                 </div>
               )}
-              <div className="rounded-xl border border-line p-4">
-                <span className="text-[11px] font-semibold uppercase tracking-[.12em] text-ink/30">Especie</span>
-                <p className="mt-1 font-display text-base font-semibold">{animal.species === "dog" ? "Cao" : "Gato"}</p>
+              <div>
+                <span className="rounded-full bg-green-100 px-2.5 py-1 text-[10px] font-bold uppercase tracking-wide text-green-700">
+                  {typeLabels[shelter.type] || shelter.type}
+                </span>
+                <h1 className="mt-2 font-display text-3xl font-bold tracking-tight md:text-4xl">{shelter.name}</h1>
+                <p className="mt-1 text-[15px] text-ink/40">{shelter.parish}</p>
               </div>
             </div>
 
-            {/* ABRIGO */}
-            <div className="mt-8 rounded-2xl bg-green-light p-6">
-              <span className="text-[11px] font-semibold uppercase tracking-[.12em] text-green">Abrigo</span>
-              <h3 className="mt-1 font-display text-lg font-bold">{animal.shelters?.name}</h3>
-              <p className="mt-0.5 text-[13px] text-ink/40">{animal.shelters?.parish}</p>
-              <div className="mt-4 flex flex-col gap-1 text-[13px]">
-                {animal.shelters?.phone && (
-                  <span className="font-display font-bold">{animal.shelters.phone}</span>
-                )}
-                {animal.shelters?.email && (
-                  <span className="text-ink/40">{animal.shelters.email}</span>
-                )}
+            {/* SERVICOS */}
+            {shelter.services && shelter.services.length > 0 && (
+              <div className="mt-8">
+                <h2 className="mb-3 font-display text-base font-bold">Servicos</h2>
+                <div className="flex flex-wrap gap-2">
+                  {shelter.services.map((s) => (
+                    <span key={s} className="rounded-full border border-line px-3.5 py-1.5 text-[12px] font-semibold text-ink/50">
+                      {s}
+                    </span>
+                  ))}
+                </div>
               </div>
-            </div>
+            )}
 
-            <div className="mt-8 flex flex-wrap gap-3">
-              {animal.shelters?.phone && (
-                <CallShelter phone={animal.shelters.phone} />
-              )}
-              {animal.shelters?.email && (
-                <EmailShelter email={animal.shelters.email} name={animal.name} />
+            {/* ANIMAIS */}
+            <div className="mt-12">
+              <h2 className="mb-6 font-display text-xl font-bold">
+                Animais para adocao ({animals?.length || 0})
+              </h2>
+              {animals && animals.length > 0 ? (
+                <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+                  {animals.map((a) => <AnimalCard key={a.id} animal={a} />)}
+                </div>
+              ) : (
+                <p className="rounded-2xl border border-line bg-white px-8 py-16 text-center text-[14px] text-ink/35">
+                  Sem animais para adocao de momento neste abrigo.
+                </p>
               )}
             </div>
-
-            <p className="mt-4 text-[12px] text-ink/30">
-              Contacta o abrigo diretamente para saber mais sobre o processo de adocao.
-            </p>
           </div>
+
+          {/* SIDEBAR */}
+          <aside className="space-y-4">
+            <div className="rounded-2xl border border-line bg-white p-6">
+              <h3 className="mb-4 font-display text-sm font-bold">Contactos</h3>
+              <div className="space-y-3 text-[13px]">
+                {shelter.phone && (
+                  <div className="flex items-center justify-between">
+                    <span className="text-ink/40">Telefone</span>
+                    <a href={"tel:" + shelter.phone} className="font-display font-bold hover:text-green-600">{shelter.phone}</a>
+                  </div>
+                )}
+                {shelter.email && (
+                  <div className="flex items-center justify-between gap-2">
+                    <span className="text-ink/40">Email</span>
+                    <a href={"mailto:" + shelter.email} className="truncate font-semibold hover:text-green-600">{shelter.email}</a>
+                  </div>
+                )}
+                <div className="flex items-center justify-between">
+                  <span className="text-ink/40">Concelho</span>
+                  <span className="font-semibold">{shelter.parish}</span>
+                </div>
+              </div>
+            </div>
+
+            {shelter.website && (
+              <a
+                href={shelter.website}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="block rounded-2xl bg-green-800 p-6 text-white transition hover:bg-green-700"
+              >
+                <h3 className="font-display text-sm font-bold">Visitar site</h3>
+                <p className="mt-1 text-[12px] text-white/40">{shelter.website.replace("https://", "").replace("www.", "")}</p>
+                <span className="mt-4 inline-block rounded-full bg-white/15 px-4 py-2 text-[12px] font-semibold">
+                  Abrir site
+                </span>
+              </a>
+            )}
+
+            <div className="rounded-2xl bg-gold-light p-6">
+              <h3 className="font-display text-sm font-bold">Queres ajudar este abrigo?</h3>
+              <p className="mt-2 text-[12px] text-ink/40">Voluntariado, donativos ou acolhimento temporario.</p>
+              <Link href="/voluntariar" className="mt-4 inline-block text-[13px] font-semibold text-gold-dark hover:underline">
+                Ver como ajudar →
+              </Link>
+            </div>
+          </aside>
         </div>
       </section>
     </main>
-  );
-}
-
-function CallShelter({ phone }) {
-  const url = "tel:" + phone;
-  return (
-    <a href={url} className="rounded-full bg-green px-7 py-3.5 text-sm font-semibold text-white transition hover:bg-green-dark">
-      Ligar ao abrigo
-    </a>
-  );
-}
-
-function EmailShelter({ email, name }) {
-  const url = "mailto:" + email + "?subject=Adocao - " + name;
-  return (
-    <a href={url} className="rounded-full border border-line px-7 py-3.5 text-sm font-semibold transition hover:border-ink">
-      Enviar email
-    </a>
   );
 }
