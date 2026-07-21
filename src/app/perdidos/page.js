@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { supabasePublic } from "@/lib/supabase/server";
+import LostFoundButtons from "./LostFoundButtons";
 
 export const metadata = { title: "Perdidos & Achados · Animal Madeira" };
 
@@ -22,13 +23,16 @@ export default async function PerdidosPage({ searchParams }) {
 
   return (
     <main>
-      <section className="bg-ink py-20 text-white">
+      <section className="bg-green-900 py-20 text-white">
         <div className="mx-auto max-w-6xl px-5">
-          <p className="mb-3 text-[11px] font-semibold uppercase tracking-[.2em] text-green">Comunidade</p>
+          <div className="mb-4 flex items-center gap-2">
+            <div className="h-px w-6 bg-gold" />
+            <span className="text-[11px] font-semibold uppercase tracking-[.2em] text-gold">Comunidade</span>
+          </div>
           <h1 className="max-w-[16ch] font-display text-4xl font-bold leading-[1.05] tracking-tight md:text-5xl">
-            Perdidos e achados<span className="text-green">.</span>
+            Perdidos e achados<span className="text-gold">.</span>
           </h1>
-          <p className="mt-4 max-w-[50ch] text-[15px] text-white/45">
+          <p className="mt-4 max-w-[50ch] text-[15px] text-white/40">
             Perdeste o teu animal ou encontraste um? Publica aqui e ajuda a reunir familias.
           </p>
         </div>
@@ -44,16 +48,16 @@ export default async function PerdidosPage({ searchParams }) {
                 { value: "found", label: "Encontrados" },
               ].map((t) => {
                 const active = (params.tipo || "todos") === t.value;
-                const href = t.value === "todos" ? "/perdidos" : `/perdidos?tipo=${t.value}`;
+                const href = t.value === "todos" ? "/perdidos" : "/perdidos?tipo=" + t.value;
                 return (
                   <Link
                     key={t.value}
                     href={href}
-                    className={`rounded-full px-5 py-2.5 text-[13px] font-semibold transition ${
-                      active
-                        ? "bg-ink text-white"
-                        : "border border-line bg-white text-ink/50 hover:border-ink hover:text-ink"
-                    }`}
+                    className={"rounded-full px-5 py-2.5 text-[13px] font-semibold transition " +
+                      (active
+                        ? "bg-green-800 text-white"
+                        : "border border-line bg-white text-ink/50 hover:border-ink hover:text-ink")
+                    }
                   >
                     {t.label}
                   </Link>
@@ -71,17 +75,17 @@ export default async function PerdidosPage({ searchParams }) {
                     key={item.id}
                     className="flex items-center gap-5 rounded-2xl border border-line bg-white p-5 transition hover:-translate-y-0.5 hover:shadow-sm"
                   >
-                    <div className="flex h-16 w-16 shrink-0 items-center justify-center rounded-2xl bg-green-light text-2xl">
+                    <div className="flex h-16 w-16 shrink-0 items-center justify-center rounded-2xl bg-green-50 text-2xl">
                       {item.species === "dog" ? "🐕" : "🐈"}
                     </div>
-                    <div className="flex-1 min-w-0">
+                    <div className="min-w-0 flex-1">
                       <div className="flex items-center gap-2">
                         <span
-                          className={`rounded-full px-2.5 py-0.5 text-[10px] font-bold uppercase tracking-wide ${
-                            item.type === "lost"
-                              ? "bg-amber-50 text-amber-700"
-                              : "bg-green-light text-green"
-                          }`}
+                          className={"rounded-full px-2.5 py-0.5 text-[10px] font-bold uppercase tracking-wide " +
+                            (item.type === "lost"
+                              ? "bg-gold-light text-gold-dark"
+                              : "bg-green-100 text-green-700")
+                          }
                         >
                           {item.type === "lost" ? "Perdido" : "Encontrado"}
                         </span>
@@ -90,9 +94,9 @@ export default async function PerdidosPage({ searchParams }) {
                         </span>
                       </div>
                       <h3 className="mt-1 font-display text-base font-semibold">{item.title}</h3>
-                      <p className="mt-0.5 text-[13px] text-ink/40 truncate">
+                      <p className="mt-0.5 truncate text-[13px] text-ink/40">
                         {item.parish}
-                        {item.description ? ` · ${item.description}` : ""}
+                        {item.description ? " · " + item.description : ""}
                       </p>
                     </div>
                     <CallButton phone={item.contact_phone} />
@@ -107,44 +111,16 @@ export default async function PerdidosPage({ searchParams }) {
             )}
           </div>
 
-          <aside className="space-y-4">
-            <div className="rounded-2xl bg-ink p-6 text-white">
-              <h3 className="font-display text-sm font-bold">Perdi o meu animal</h3>
-              <p className="mt-2 text-[13px] text-white/45">
-                Publica com foto, local e contacto. A comunidade ajuda a procurar.
-              </p>
-              <button className="mt-4 w-full rounded-full bg-white py-2.5 text-[13px] font-semibold text-ink transition hover:bg-paper">
-                Publicar perdido
-              </button>
-            </div>
-            <div className="rounded-2xl bg-green p-6 text-white">
-              <h3 className="font-display text-sm font-bold">Encontrei um animal</h3>
-              <p className="mt-2 text-[13px] text-white/55">
-                Verifica se tem chip num veterinario e publica aqui.
-              </p>
-              <button className="mt-4 w-full rounded-full bg-white py-2.5 text-[13px] font-semibold text-ink transition hover:bg-paper">
-                Publicar encontrado
-              </button>
-            </div>
-            <div className="rounded-2xl border border-line bg-white p-6">
-              <h3 className="font-display text-sm font-bold">Dica</h3>
-              <p className="mt-2 text-[13px] text-ink/40">
-                A maioria dos reencontros acontece nas primeiras 48 horas. Partilha tambem nos grupos locais do concelho.
-              </p>
-            </div>
-          </aside>
+          <LostFoundButtons />
         </div>
       </section>
     </main>
   );
 }
+
 function CallButton({ phone }) {
-  const url = "tel:" + phone;
   return (
-    <a
-      href={url}
-      className="shrink-0 rounded-full bg-ink px-4 py-2 text-[12px] font-semibold text-white transition hover:bg-green-dark"
-    >
+    <a href={"tel:" + phone} className="shrink-0 rounded-full bg-green-800 px-4 py-2 text-[12px] font-semibold text-white transition hover:bg-green-700">
       Ligar
     </a>
   );

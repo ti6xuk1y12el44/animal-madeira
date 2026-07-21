@@ -59,8 +59,8 @@ export default async function Home() {
           </div>
           <div className="mt-16 flex gap-14 border-t border-white/10 pt-6">
             {[
-              { n: "Centenas", l: "animais a procura de familia" },
-              { n: "Toda a ilha", l: "abrigos participantes" },
+              { n: "500+", l: "animais a procura de familia" },
+              { n: "21", l: "abrigos participantes" },
               { n: "11", l: "municipios cobertos" },
             ].map((s) => (
               <div key={s.l}>
