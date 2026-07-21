@@ -25,6 +25,9 @@ export async function submitReport(prevState, formData) {
     reporter_email: data.reporter_email || null,
   });
 
-  if (error) return { errors: { _global: "Erro ao registar. Tenta de novo." } };
+  if (error) {
+    console.log("SUPABASE ERROR:", error);
+    return { errors: { _global: "Erro ao registar. Tenta de novo." } };
+  }
   return { success: true };
 }

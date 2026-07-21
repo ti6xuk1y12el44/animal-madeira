@@ -21,6 +21,9 @@ export async function submitVolunteer(prevState, formData) {
     message: data.message || null,
   });
 
-  if (error) return { errors: { _global: "Erro ao registar. Tenta de novo." } };
+  if (error) {
+    console.log("SUPABASE ERROR:", error);
+    return { errors: { _global: "Erro ao registar. Tenta de novo." } };
+  }
   return { success: true };
 }

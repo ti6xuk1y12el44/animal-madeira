@@ -23,6 +23,9 @@ export async function submitLostFound(prevState, formData) {
     contact_phone: data.contact_phone,
   });
 
-  if (error) return { errors: { _global: "Erro ao publicar. Tenta de novo." } };
+  if (error) {
+    console.log("SUPABASE ERROR:", error);
+    return { errors: { _global: "Erro ao registar. Tenta de novo." } };
+  }
   return { success: true };
 }
