@@ -14,32 +14,32 @@ export default function Footer() {
               </div>
               <span className="font-display text-sm font-bold text-white">Animal Madeira</span>
             </div>
-            <p className="mt-3 max-w-[28ch] text-[13px] leading-relaxed text-white/35">
+            <p className="mt-3 max-w-[28ch] text-[13px] leading-relaxed text-sky/45">
               Plataforma de bem-estar animal da ilha da Madeira. Uma iniciativa Madeira Friends.
             </p>
           </div>
           <div>
-            <h4 className="mb-3 text-[11px] font-semibold uppercase tracking-[.12em] text-white/25">Plataforma</h4>
+            <h4 className="mb-3 text-[11px] font-semibold uppercase tracking-[.12em] text-sky/25">Plataforma</h4>
             <Link href="/adotar" className="block py-1 text-[13px] hover:text-gold">Adotar</Link>
             <Link href="/voluntariar" className="block py-1 text-[13px] hover:text-gold">Voluntariar</Link>
             <Link href="/esterilizar" className="block py-1 text-[13px] hover:text-gold">Esterilizar</Link>
             <Link href="/abrigos" className="block py-1 text-[13px] hover:text-gold">Abrigos</Link>
           </div>
           <div>
-            <h4 className="mb-3 text-[11px] font-semibold uppercase tracking-[.12em] text-white/25">Agir</h4>
+            <h4 className="mb-3 text-[11px] font-semibold uppercase tracking-[.12em] text-sky/25">Agir</h4>
             <Link href="/denunciar" className="block py-1 text-[13px] hover:text-gold">Denunciar</Link>
             <Link href="/emergencia" className="block py-1 text-[13px] hover:text-gold">Emergencia</Link>
             <Link href="/perdidos" className="block py-1 text-[13px] hover:text-gold">Perdidos</Link>
             <Link href="/doar" className="block py-1 text-[13px] hover:text-gold">Doar</Link>
           </div>
           <div>
-            <h4 className="mb-3 text-[11px] font-semibold uppercase tracking-[.12em] text-white/25">Aviso</h4>
-            <p className="text-[13px] leading-relaxed text-white/35">
+            <h4 className="mb-3 text-[11px] font-semibold uppercase tracking-[.12em] text-sky/25">Aviso</h4>
+            <p className="text-[13px] leading-relaxed text-sky/35">
               Esta plataforma nao substitui autoridades oficiais. Em emergencias liga 112.
             </p>
           </div>
         </div>
-        <div className="mt-10 flex flex-col gap-2 border-t border-white/8 pt-6 text-[12px] text-white/20 sm:flex-row sm:justify-between">
+        <div className="mt-10 flex flex-col gap-2 border-t border-white/8 pt-6 text-[12px] text-sky/10 sm:flex-row sm:justify-between">
           <span>2026 Animal Madeira · Madeira Friends</span>
           <span>Privacidade · Termos</span>
         </div>

@@ -33,12 +33,12 @@ export default function Navbar() {
             <Link
               key={l.href}
               href={l.href}
-              className="rounded-lg px-3 py-1.5 text-[13px] font-medium text-ink/50 transition hover:bg-green-50 hover:text-ink"
+              className="rounded-lg px-3 py-1.5 text-[13px] font-medium text-sky/50 transition hover:bg-green-50 hover:text-ink"
             >
               {l.label}
             </Link>
           ))}
-          <Link href="/sobre" className="rounded-lg px-3 py-1.5 text-[13px] font-medium text-ink/50 transition hover:bg-green-50 hover:text-ink">
+          <Link href="/sobre" className="rounded-lg px-3 py-1.5 text-[13px] font-medium text-sky/50 transition hover:bg-green-50 hover:text-ink">
             Sobre
           </Link>
         </nav>

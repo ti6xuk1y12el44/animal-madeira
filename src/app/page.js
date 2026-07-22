@@ -53,7 +53,7 @@ export default async function Home() {
             <Link key={a.href} href={a.href} className="group flex flex-col items-center gap-2 rounded-xl border border-line bg-white px-3 py-5 text-center transition hover:-translate-y-0.5 hover:shadow-md">
               <span className="flex h-11 w-11 items-center justify-center rounded-xl bg-green-50 text-lg">{a.icon}</span>
               <h3 className="font-display text-[13px] font-semibold">{a.label}</h3>
-              <p className="text-[10px] leading-snug text-ink/35">{a.sub}</p>
+              <p className="text-[12px] leading-snug text-ink/75">{a.sub}</p>
               {a.arrow && <span className="text-[11px] text-green-600">→</span>}
             </Link>
           ))}
@@ -73,7 +73,7 @@ export default async function Home() {
               <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-green-50 text-base">{s.icon}</span>
               <div>
                 <div className="font-display text-[14px] font-bold">{s.n}</div>
-                <div className="mt-0.5 text-[11px] leading-snug text-ink/40">{s.l}</div>
+                <div className="mt-0.5 text-[12px] leading-snug text-ink/90">{s.l}</div>
               </div>
             </div>
           ))}
@@ -102,13 +102,13 @@ export default async function Home() {
                 </div>
                 <div className="mt-2">
                   <h3 className="font-display text-[14px] font-semibold">{a.name}</h3>
-                  <p className="text-[11px] text-ink/40">
+                  <p className="text-[11px] text-ink/90">
                     {a.sex === "f" ? "Femea" : "Macho"} · {age}
                   </p>
-                  <p className="text-[11px] text-ink/40">
+                  <p className="text-[11px] text-ink/90">
                     {a.species === "dog" ? "Cao" : "Gato"} · {a.size ? {small:"Pequeno",medium:"Medio",large:"Grande"}[a.size] : "—"}
                   </p>
-                  <p className="text-[11px] text-ink/30">{a.shelters?.name} · {a.shelters?.parish}</p>
+                  <p className="text-[11px] text-ink/90">{a.shelters?.name} · {a.shelters?.parish}</p>
                 </div>
                 <button className="mt-2 w-full rounded-lg bg-green-600 py-1.5 text-[11px] font-semibold text-white transition group-hover:bg-green-700">Ver perfil</button>
               </Link>
@@ -135,8 +135,8 @@ export default async function Home() {
                 <div>
                   {s.status && <span className="rounded bg-green-100 px-1.5 py-0.5 text-[9px] font-bold uppercase text-green-700">{s.status}</span>}
                   <h3 className="mt-1 font-display text-[14px] font-semibold">{s.name}</h3>
-                  <p className="mt-0.5 text-[11px] text-ink/40">{s.story}</p>
-                  <p className="mt-1 text-[10px] text-ink/30">{s.parish}</p>
+                  <p className="mt-0.5 text-[12px] text-ink/90">{s.story}</p>
+                  <p className="mt-1 text-[12px] text-ink/90">{s.parish}</p>
                 </div>
               </div>
             ))}
@@ -151,7 +151,7 @@ export default async function Home() {
             <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-white/10 text-lg">⚠️</span>
             <div>
               <h3 className="font-display text-base font-bold">Viste um animal em risco?</h3>
-              <p className="mt-1 text-[12px] text-white/50">A tua denuncia pode salvar uma vida. E rapido, facil e confidencial.</p>
+              <p className="mt-1 text-[12px] text-sky/50">A tua denuncia pode salvar uma vida. E rapido, facil e confidencial.</p>
               <Link href="/denunciar" className="mt-3 inline-block rounded-full border border-white/20 px-4 py-1.5 text-[11px] font-semibold transition hover:bg-white/10">Fazer denuncia</Link>
             </div>
           </div>
@@ -159,7 +159,7 @@ export default async function Home() {
             <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-white/10 text-lg">📞</span>
             <div>
               <h3 className="font-display text-base font-bold">Emergencia?</h3>
-              <p className="mt-1 text-[12px] text-white/50">Animal ferido ou em perigo imediato? Obtem ajuda agora.</p>
+              <p className="mt-1 text-[12px] text-sky/50">Animal ferido ou em perigo imediato? Obtem ajuda agora.</p>
               <Link href="/emergencia" className="mt-3 inline-block rounded-full border border-white/20 px-4 py-1.5 text-[11px] font-semibold transition hover:bg-white/10">Ver contactos de emergencia</Link>
             </div>
           </div>
@@ -183,11 +183,11 @@ export default async function Home() {
                 <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-green-50 text-lg">✂️</span>
                 <div>
                   <h3 className="font-display text-[13px] font-semibold">{c.name}</h3>
-                  <p className="text-[11px] text-ink/40">{c.dates}</p>
-                  <p className="mt-1 text-[11px] text-ink/35">{c.desc}</p>
+                  <p className="text-[12px] text-ink/85">{c.dates}</p>
+                  <p className="mt-1 text-[12px] text-ink/85">{c.desc}</p>
                   <div className="mt-2 flex gap-2">
                     <span className="rounded-full bg-green-50 px-2 py-0.5 text-[10px] font-semibold text-green-700">{c.parish}</span>
-                    <span className="rounded-full border border-line px-2 py-0.5 text-[10px] font-semibold text-ink/40">Saber mais</span>
+                    <span className="rounded-full border border-line px-2 py-0.5 text-[10px] font-semibold text-sky/50">Saber mais</span>
                   </div>
                 </div>
               </div>
@@ -208,13 +208,13 @@ export default async function Home() {
               {["SPAD", "Vamos La", "Patinhas Felizes", "CRO Santa Cruz", "Ajuda a Alimentar Caes", "Abrigo Municipal Santana"].map((name) => (
                 <div key={name} className="flex flex-col items-center gap-1.5">
                   <div className="flex h-14 w-14 items-center justify-center rounded-full bg-green-50">
-                    <span className="font-display text-[11px] font-bold text-green-700">{name.split(" ").map(w => w[0]).join("").slice(0,3)}</span>
+                    <span className="font-display text-[15px] font-bold text-green-700">{name.split(" ").map(w => w[0]).join("").slice(0,3)}</span>
                   </div>
-                  <span className="max-w-[70px] text-center text-[9px] leading-tight text-ink/35">{name}</span>
+                  <span className="max-w-[70px] text-center text-[12px] leading-tight text-sky/40">{name}</span>
                 </div>
               ))}
             </div>
-            <p className="mt-6 text-[13px] text-ink/40">Encontre abrigos, associacoes e clinicas em toda a Madeira.</p>
+            <p className="mt-6 text-[13px] text-sky/40">Encontre abrigos, associacoes e clinicas em toda a Madeira.</p>
             <Link href="/abrigos" className="mt-4 inline-block rounded-full bg-green-600 px-5 py-2.5 text-[12px] font-semibold text-white transition hover:bg-green-700">Explorar no mapa</Link>
           </div>
           <div className="overflow-hidden rounded-xl border border-line">
@@ -229,7 +229,7 @@ export default async function Home() {
           <div className="grid gap-8 md:grid-cols-[1fr_1.8fr]">
             <div>
               <h2 className="font-display text-xl font-bold md:text-2xl">Juntos fazemos a diferenca</h2>
-              <p className="mt-3 text-[13px] leading-relaxed text-ink/40">
+              <p className="mt-3 text-[13px] leading-relaxed text-sky/40">
                 Madeira Animal Help foi criado para ligar pessoas, associacoes, municipios e autoridades em prol do bem-estar animal na Madeira.
               </p>
               <Link href="/sobre" className="mt-5 inline-block rounded-full border border-ink px-5 py-2 text-[12px] font-semibold transition hover:bg-ink hover:text-white">Saber mais sobre nos</Link>
@@ -244,7 +244,7 @@ export default async function Home() {
                 <div key={v.title} className="rounded-xl border border-line bg-white p-4 text-center">
                   <span className="text-xl">{v.icon}</span>
                   <h3 className="mt-2 font-display text-[12px] font-bold">{v.title}</h3>
-                  <p className="mt-1 text-[10px] leading-snug text-ink/35">{v.desc}</p>
+                  <p className="mt-1 text-[12px] leading-snug text-sky/35">{v.desc}</p>
                 </div>
               ))}
             </div>
@@ -259,7 +259,7 @@ export default async function Home() {
             <span className="text-lg">💌</span>
             <div>
               <h3 className="text-[13px] font-bold">Fica a par de campanhas, historias e novidades.</h3>
-              <p className="text-[11px] text-white/40">Subscreve a nossa newsletter e ajuda mais animais.</p>
+              <p className="text-[13px] text-sky/90">Subscreve a nossa newsletter e ajuda mais animais.</p>
             </div>
           </div>
           <form className="flex w-full gap-2 sm:w-auto" action="#">
