@@ -189,8 +189,8 @@ export default function SobrePage() {
               A Madeira Animal Help e a nossa iniciativa de bem-estar animal — independente, sem fins lucrativos e movida a voluntarios.
             </p>
             <div className="mt-8 flex flex-wrap gap-3">
-              <a href="https://madeirafriends.com" target="_blank" rel="noopener noreferrer" className="rounded-full bg-green-800 px-6 py-3 text-[13px] font-semibold text-white transition hover:bg-green-700">
-                madeirafriends.com
+              <a href="https://madeirafriends.org" target="_blank" rel="noopener noreferrer" className="rounded-full bg-green-800 px-6 py-3 text-[13px] font-semibold text-white transition hover:bg-green-700">
+                madeirafriends.org
               </a>
               <Link href="/voluntariar" className="rounded-full border border-green-700 px-6 py-3 text-[13px] font-semibold text-green-700 transition hover:bg-green-800 hover:text-white">
                 Quero ajudar

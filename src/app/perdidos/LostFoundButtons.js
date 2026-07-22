@@ -24,7 +24,7 @@ export default function LostFoundButtons() {
   }
 
   return (
-    <aside className="space-y-4">
+    <aside className="space-y-4 overflow-hidden">
       <div className="rounded-2xl bg-green-800 p-6 text-white">
         <h3 className="font-display text-sm font-bold">Perdi o meu animal</h3>
         <p className="mt-2 text-[13px] text-white/45">
