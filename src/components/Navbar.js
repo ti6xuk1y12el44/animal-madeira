@@ -7,7 +7,6 @@ const links = [
   { href: "/esterilizar", label: "Esterilizar" },
   { href: "/voluntariar", label: "Voluntariar" },
   { href: "/denunciar", label: "Denunciar" },
-  { href: "/emergencia", label: "Emergencia" },
   { href: "/abrigos", label: "Abrigos" },
   { href: "/perdidos", label: "Perdidos" },
 ];
