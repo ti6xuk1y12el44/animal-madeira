@@ -57,7 +57,7 @@ export default async function Home() {
               Emergencia
             </Link>
           </div>
-          <div className="mt-16 flex gap-14 border-t border-white/10 pt-6">
+          <div className="mt-12 flex gap-8 border-t border-white/10 pt-6 md:mt-16 md:gap-14">
             {[
               { n: "500+", l: "animais a procura de familia" },
               { n: "21", l: "abrigos participantes" },
@@ -202,7 +202,7 @@ export default async function Home() {
                 Conhecer abrigos
               </Link>
             </div>
-            <div className="grid grid-cols-3 gap-2.5">
+            <div className="grid grid-cols-3 gap-2">
               {[
                 { abbr: "SPAD", bg: "bg-green-800 text-white" },
                 { abbr: "CRO", bg: "bg-green-100 text-green-700" },
@@ -254,12 +254,12 @@ export default async function Home() {
             <h3 className="font-display text-base font-bold">Fica a par</h3>
             <p className="mt-1 text-[13px] text-ink/35">Campanhas e novidades, uma vez por mes.</p>
           </div>
-          <form className="flex gap-2" action="#">
+          <form className="flex w-full gap-2 sm:w-auto" action="#">
             <input
               type="email"
               required
               placeholder="O teu email"
-              className="rounded-full border border-line bg-white px-5 py-2.5 text-sm text-ink outline-none transition focus:border-green-400"
+              className="min-w-0 flex-1 rounded-full border border-line bg-white px-4 py-2.5 text-sm text-ink outline-none transition focus:border-green-400 sm:flex-initial sm:px-5"
             />
             <button
               type="submit"
