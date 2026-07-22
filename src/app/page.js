@@ -24,14 +24,14 @@ export default async function Home() {
           <h1 className="max-w-[12ch] font-display text-5xl font-bold italic leading-[1.05] tracking-tight text-white sm:text-6xl md:text-7xl">
             Cada animal merece.
           </h1>
-          <p className="mt-4 max-w-[44ch] text-[15px] leading-relaxed text-white/60">
+          <p className="mt-4 max-w-[44ch] text-[15px] leading-relaxed text-white/100">
             Adocao, esterilizacao, voluntariado e denuncias para todos os animais da Madeira — num so lugar.
           </p>
           <div className="mt-8 flex flex-wrap gap-3">
             <Link href="/adotar" className="rounded-full bg-green-600 px-6 py-3 text-[13px] font-semibold text-white transition hover:bg-green-700">
               Quero adotar
             </Link>
-            <Link href="/emergencia" className="rounded-full border border-white/30 px-6 py-3 text-[13px] font-semibold text-white transition hover:bg-white/10">
+            <Link href="/emergencia" className="rounded-full border border-white/30 px-6 py-3 text-[13px] font-semibold text-white transition hover:bg-green-700">
               Preciso de ajuda
             </Link>
           </div>
