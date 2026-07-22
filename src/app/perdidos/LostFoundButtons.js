@@ -7,8 +7,8 @@ export default function LostFoundButtons() {
 
   if (formType) {
     return (
-      <aside>
-        <div className="rounded-2xl border border-line bg-white p-6">
+      <aside className="overflow-hidden">
+        <div className="rounded-xl border border-line bg-white p-5">
           <div className="mb-4 flex items-center justify-between">
             <h3 className="font-display text-sm font-bold">
               {formType === "lost" ? "Publicar animal perdido" : "Publicar animal encontrado"}
@@ -24,8 +24,8 @@ export default function LostFoundButtons() {
   }
 
   return (
-    <aside className="space-y-4 overflow-hidden">
-      <div className="rounded-2xl bg-green-800 p-6 text-white">
+    <aside className="space-y-3 overflow-hidden">
+      <div className="rounded-xl bg-green-800 p-5 text-white">
         <h3 className="font-display text-sm font-bold">Perdi o meu animal</h3>
         <p className="mt-2 text-[13px] text-white/45">
           Publica com local e contacto. A comunidade ajuda a procurar.
@@ -37,7 +37,7 @@ export default function LostFoundButtons() {
           Publicar perdido
         </button>
       </div>
-      <div className="rounded-2xl bg-gold-light p-6">
+      <div className="rounded-xl bg-gold-light p-5">
         <h3 className="font-display text-sm font-bold">Encontrei um animal</h3>
         <p className="mt-2 text-[13px] text-ink/45">
           Verifica se tem chip num veterinario e publica aqui.
@@ -49,7 +49,7 @@ export default function LostFoundButtons() {
           Publicar encontrado
         </button>
       </div>
-      <div className="rounded-2xl border border-line bg-white p-6">
+      <div className="rounded-xl border border-line bg-white p-5">
         <h3 className="font-display text-sm font-bold">Dica</h3>
         <p className="mt-2 text-[13px] text-ink/40">
           A maioria dos reencontros acontece nas primeiras 48 horas. Partilha tambem nos grupos locais.
