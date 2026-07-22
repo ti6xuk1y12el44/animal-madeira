@@ -23,5 +23,6 @@
 }
 
 * { box-sizing: border-box; }
+html, body { overflow-x: hidden; }
 body { font-family: var(--font-body); background: var(--color-paper); color: var(--color-ink); }
 ::selection { background: var(--color-green-600); color: #fff; }
