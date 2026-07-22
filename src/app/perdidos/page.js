@@ -38,8 +38,8 @@ export default async function PerdidosPage({ searchParams }) {
         </div>
       </section>
 
-      <section className="mx-auto max-w-6xl px-5 py-16 md:py-20">
-        <div className="grid gap-10 lg:grid-cols-[1fr_280px]">
+      <section className="mx-auto max-w-6xl overflow-hidden px-5 py-16 md:py-20">
+        <div className="grid min-w-0 gap-10 lg:grid-cols-[1fr_280px]">
           <div>
             <div className="mb-8 flex gap-2">
               {[
