@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { supabasePublic } from "@/lib/supabase/server";
 import { Heart, Scissors, HandHeart, AlertTriangle, Phone, Home as HomeIcon, MapPin, Users, Diamond, Eye, Handshake, Target, Mail } from "lucide-react";
+import MadeiraMap from "@/components/MadeiraMap";
 
 export default async function Home() {
   const supabase = supabasePublic();
@@ -222,9 +223,7 @@ export default async function Home() {
             <p className="mt-6 text-[13px] text-ink/50">Encontre abrigos, associacoes e clinicas em toda a Madeira.</p>
             <Link href="/abrigos" className="mt-4 inline-block rounded-full bg-green-600 px-5 py-2.5 text-[12px] font-semibold text-white transition hover:bg-green-700">Explorar no mapa</Link>
           </div>
-          <div className="overflow-hidden rounded-xl border border-line">
-            <img src="https://images.unsplash.com/photo-1524661135-423995f22d0b?w=600&h=350&fit=crop" alt="Mapa da Madeira" className="h-[220px] w-full object-cover" />
-          </div>
+          <MadeiraMap />
         </div>
       </section>
 
