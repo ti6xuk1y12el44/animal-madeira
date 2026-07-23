@@ -140,11 +140,11 @@ export default function SobrePage() {
               key={item.title}
               className={"rounded-xl p-6 " + (item.accent ? "bg-green-800 text-white" : "border border-line bg-white")}
             >
-              <span className={"flex h-10 w-10 items-center justify-center rounded-lg " + (item.accent ? "bg-white/10" : "bg-green-50")}>
+              <span className={"flex h-10 w-10 items-center justify-center rounded-lg" + (item.accent ? "bg-white/10" : "bg-green-50")}>
                 <item.Icon size={18} className={item.accent ? "text-white" : "text-green-600"} />
               </span>
               <h3 className="mt-3 font-display text-[15px] font-semibold">{item.title}</h3>
-              <p className={"mt-2 text-[13px] leading-relaxed " + (item.accent ? "text-white/55" : "text-ink/50")}>
+              <p className={"mt-2 text-[13px] leading-relaxed text-ink/85" + (item.accent ? "text-white/55" : "text-ink/50")}>
                 {item.desc}
               </p>
             </div>
