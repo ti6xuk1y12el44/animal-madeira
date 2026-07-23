@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { supabasePublic } from "@/lib/supabase/server";
+import { Heart, Scissors, HandHeart, AlertTriangle, Phone, Home as HomeIcon, MapPin, Users, Diamond, Eye, Handshake, Target, Mail } from "lucide-react";
 
 export default async function Home() {
   const supabase = supabasePublic();
@@ -12,7 +13,6 @@ export default async function Home() {
 
   return (
     <main>
-      {/* HERO */}
       <section className="relative min-h-[80vh] overflow-hidden">
         <img
           src="https://images.unsplash.com/photo-1601758228041-f3b2795255f1?w=1600&h=900&fit=crop"
@@ -24,7 +24,7 @@ export default async function Home() {
           <h1 className="max-w-[12ch] font-display text-5xl font-bold italic leading-[1.05] tracking-tight text-white sm:text-6xl md:text-7xl">
             Cada animal merece.
           </h1>
-          <p className="mt-4 max-w-[44ch] text-[15px] leading-relaxed text-white/100">
+          <p className="mt-4 max-w-[44ch] text-[15px] leading-relaxed text-white">
             Adocao, esterilizacao, voluntariado e denuncias para todos os animais da Madeira — num so lugar.
           </p>
           <div className="mt-8 flex flex-wrap gap-3">
@@ -38,20 +38,21 @@ export default async function Home() {
         </div>
       </section>
 
-      {/* COMO QUERES AJUDAR */}
       <section className="mx-auto max-w-6xl px-5 py-16 md:py-20">
         <h2 className="mb-10 text-center font-display text-xl font-bold md:text-2xl">Como queres ajudar?</h2>
         <div className="grid grid-cols-3 gap-4 md:grid-cols-6">
           {[
-            { href: "/adotar", icon: "🐾", label: "Adotar", sub: "Caes e gatos a espera de uma familia." },
-            { href: "/esterilizar", icon: "✂️", label: "Esterilizar", sub: "Campanhas e clinicas em cada concelho." },
-            { href: "/voluntariar", icon: "💚", label: "Voluntariar", sub: "Acolhe, transporta ou da o teu tempo." },
-            { href: "/denunciar", icon: "⚠️", label: "Denunciar", sub: "Abandono ou maus-tratos. Sempre confidencial.", arrow: true },
-            { href: "/emergencia", icon: "📞", label: "Emergencia", sub: "Contactos certos para cada situacao.", arrow: true },
-            { href: "/abrigos", icon: "🏠", label: "Abrigos", sub: "Conhece as associacoes e como ajudar." },
+            { href: "/adotar", Icon: Heart, label: "Adotar", sub: "Caes e gatos a espera de uma familia." },
+            { href: "/esterilizar", Icon: Scissors, label: "Esterilizar", sub: "Campanhas e clinicas em cada concelho." },
+            { href: "/voluntariar", Icon: HandHeart, label: "Voluntariar", sub: "Acolhe, transporta ou da o teu tempo." },
+            { href: "/denunciar", Icon: AlertTriangle, label: "Denunciar", sub: "Abandono ou maus-tratos. Sempre confidencial.", arrow: true },
+            { href: "/emergencia", Icon: Phone, label: "Emergencia", sub: "Contactos certos para cada situacao.", arrow: true },
+            { href: "/abrigos", Icon: HomeIcon, label: "Abrigos", sub: "Conhece as associacoes e como ajudar." },
           ].map((a) => (
             <Link key={a.href} href={a.href} className="group flex flex-col items-center gap-2 rounded-xl border border-line bg-white px-3 py-5 text-center transition hover:-translate-y-0.5 hover:shadow-md">
-              <span className="flex h-11 w-11 items-center justify-center rounded-xl bg-green-50 text-lg">{a.icon}</span>
+              <span className="flex h-11 w-11 items-center justify-center rounded-xl bg-green-50">
+                <a.Icon size={20} className="text-green-600" />
+              </span>
               <h3 className="font-display text-[13px] font-semibold">{a.label}</h3>
               <p className="text-[12px] leading-snug text-ink/75">{a.sub}</p>
               {a.arrow && <span className="text-[11px] text-green-600">→</span>}
@@ -60,17 +61,18 @@ export default async function Home() {
         </div>
       </section>
 
-      {/* STATS */}
       <section className="border-y border-line bg-white">
         <div className="mx-auto grid max-w-6xl grid-cols-2 divide-x divide-y divide-line md:grid-cols-4 md:divide-y-0">
           {[
-            { icon: "❤️", n: "500+", l: "animais a procura de uma familia" },
-            { icon: "🏠", n: "Toda a Madeira", l: "abrigos e associacoes participantes" },
-            { icon: "🙋", n: "Junte-se a nos", l: "voluntariado disponivel durante todo o ano" },
-            { icon: "📍", n: "11 Municipios", l: "informacao organizada por concelho" },
+            { Icon: Heart, n: "500+", l: "animais a procura de uma familia" },
+            { Icon: HomeIcon, n: "Toda a Madeira", l: "abrigos e associacoes participantes" },
+            { Icon: Users, n: "Junte-se a nos", l: "voluntariado disponivel durante todo o ano" },
+            { Icon: MapPin, n: "11 Municipios", l: "informacao organizada por concelho" },
           ].map((s) => (
             <div key={s.l} className="flex items-start gap-3 px-5 py-6">
-              <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-green-50 text-base">{s.icon}</span>
+              <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-green-50">
+                <s.Icon size={18} className="text-green-600" />
+              </span>
               <div>
                 <div className="font-display text-[14px] font-bold">{s.n}</div>
                 <div className="mt-0.5 text-[12px] leading-snug text-ink/90">{s.l}</div>
@@ -80,7 +82,6 @@ export default async function Home() {
         </div>
       </section>
 
-      {/* ANIMAIS */}
       <section className="mx-auto max-w-6xl px-5 py-16 md:py-20">
         <div className="mb-8 flex items-end justify-between gap-4">
           <h2 className="font-display text-xl font-bold md:text-2xl">A espera de uma familia</h2>
@@ -102,12 +103,8 @@ export default async function Home() {
                 </div>
                 <div className="mt-2">
                   <h3 className="font-display text-[14px] font-semibold">{a.name}</h3>
-                  <p className="text-[11px] text-ink/90">
-                    {a.sex === "f" ? "Femea" : "Macho"} · {age}
-                  </p>
-                  <p className="text-[11px] text-ink/90">
-                    {a.species === "dog" ? "Cao" : "Gato"} · {a.size ? {small:"Pequeno",medium:"Medio",large:"Grande"}[a.size] : "—"}
-                  </p>
+                  <p className="text-[11px] text-ink/90">{a.sex === "f" ? "Femea" : "Macho"} · {age}</p>
+                  <p className="text-[11px] text-ink/90">{a.species === "dog" ? "Cao" : "Gato"} · {a.size ? {small:"Pequeno",medium:"Medio",large:"Grande"}[a.size] : "—"}</p>
                   <p className="text-[11px] text-ink/90">{a.shelters?.name} · {a.shelters?.parish}</p>
                 </div>
                 <button className="mt-2 w-full rounded-lg bg-green-600 py-1.5 text-[11px] font-semibold text-white transition group-hover:bg-green-700">Ver perfil</button>
@@ -117,11 +114,12 @@ export default async function Home() {
         </div>
       </section>
 
-      {/* HISTORIAS */}
       <section className="bg-green-50 py-16 md:py-20">
         <div className="mx-auto max-w-6xl px-5">
           <div className="mb-8 flex items-end justify-between gap-4">
-            <h2 className="font-display text-xl font-bold md:text-2xl">Historias que mudam vidas ❤️</h2>
+            <h2 className="flex items-center gap-2 font-display text-xl font-bold md:text-2xl">
+              Historias que mudam vidas <Heart size={18} className="text-green-600" />
+            </h2>
             <span className="text-[13px] font-semibold text-green-600">Ver todas as historias →</span>
           </div>
           <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
@@ -133,7 +131,11 @@ export default async function Home() {
               <div key={s.name} className="flex gap-4 rounded-xl border border-line bg-white p-4">
                 <img src={s.img} alt={s.name} className="h-20 w-20 shrink-0 rounded-lg object-cover" />
                 <div>
-                  {s.status && <span className="rounded bg-green-100 px-1.5 py-0.5 text-[9px] font-bold uppercase text-green-700">{s.status}</span>}
+                  {s.status && (
+                    <span className="inline-flex items-center gap-1 rounded bg-green-100 px-1.5 py-0.5 text-[9px] font-bold uppercase text-green-700">
+                      <Heart size={10} /> {s.status}
+                    </span>
+                  )}
                   <h3 className="mt-1 font-display text-[14px] font-semibold">{s.name}</h3>
                   <p className="mt-0.5 text-[12px] text-ink/90">{s.story}</p>
                   <p className="mt-1 text-[12px] text-ink/90">{s.parish}</p>
@@ -144,29 +146,31 @@ export default async function Home() {
         </div>
       </section>
 
-      {/* DENUNCIA + EMERGENCIA */}
       <section className="mx-auto max-w-6xl px-5 py-16 md:py-20">
         <div className="grid overflow-hidden rounded-xl md:grid-cols-2">
           <div className="flex gap-4 bg-green-800 p-6 text-white md:p-8">
-            <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-white/10 text-lg">⚠️</span>
+            <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-white/10">
+              <AlertTriangle size={18} />
+            </span>
             <div>
               <h3 className="font-display text-base font-bold">Viste um animal em risco?</h3>
-              <p className="mt-1 text-[12px] text-sky/50">A tua denuncia pode salvar uma vida. E rapido, facil e confidencial.</p>
+              <p className="mt-1 text-[12px] text-white/70">A tua denuncia pode salvar uma vida. E rapido, facil e confidencial.</p>
               <Link href="/denunciar" className="mt-3 inline-block rounded-full border border-white/20 px-4 py-1.5 text-[11px] font-semibold transition hover:bg-white/10">Fazer denuncia</Link>
             </div>
           </div>
           <div className="flex gap-4 bg-red-600 p-6 text-white md:p-8">
-            <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-white/10 text-lg">📞</span>
+            <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-white/10">
+              <Phone size={18} />
+            </span>
             <div>
               <h3 className="font-display text-base font-bold">Emergencia?</h3>
-              <p className="mt-1 text-[12px] text-sky/50">Animal ferido ou em perigo imediato? Obtem ajuda agora.</p>
+              <p className="mt-1 text-[12px] text-white/70">Animal ferido ou em perigo imediato? Obtem ajuda agora.</p>
               <Link href="/emergencia" className="mt-3 inline-block rounded-full border border-white/20 px-4 py-1.5 text-[11px] font-semibold transition hover:bg-white/10">Ver contactos de emergencia</Link>
             </div>
           </div>
         </div>
       </section>
 
-      {/* CAMPANHAS */}
       <section className="border-t border-line bg-white py-16 md:py-20">
         <div className="mx-auto max-w-6xl px-5">
           <div className="mb-8 flex items-end justify-between gap-4">
@@ -180,14 +184,16 @@ export default async function Home() {
               { name: "Apoio Animal Santana", dates: "Durante todo o mes", desc: "Apoio para esterilizacao de caes", parish: "Santana" },
             ].map((c) => (
               <div key={c.name} className="flex gap-4 rounded-xl border border-line p-4">
-                <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-green-50 text-lg">✂️</span>
+                <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-green-50">
+                  <Scissors size={18} className="text-green-600" />
+                </span>
                 <div>
                   <h3 className="font-display text-[13px] font-semibold">{c.name}</h3>
                   <p className="text-[12px] text-ink/85">{c.dates}</p>
                   <p className="mt-1 text-[12px] text-ink/85">{c.desc}</p>
                   <div className="mt-2 flex gap-2">
                     <span className="rounded-full bg-green-50 px-2 py-0.5 text-[10px] font-semibold text-green-700">{c.parish}</span>
-                    <span className="rounded-full border border-line px-2 py-0.5 text-[10px] font-semibold text-sky/50">Saber mais</span>
+                    <span className="rounded-full border border-line px-2 py-0.5 text-[10px] font-semibold text-ink/50">Saber mais</span>
                   </div>
                 </div>
               </div>
@@ -196,7 +202,6 @@ export default async function Home() {
         </div>
       </section>
 
-      {/* ABRIGOS */}
       <section className="mx-auto max-w-6xl px-5 py-16 md:py-20">
         <div className="mb-8 flex items-end justify-between gap-4">
           <h2 className="font-display text-xl font-bold md:text-2xl">Abrigos e associacoes</h2>
@@ -210,11 +215,11 @@ export default async function Home() {
                   <div className="flex h-14 w-14 items-center justify-center rounded-full bg-green-50">
                     <span className="font-display text-[15px] font-bold text-green-700">{name.split(" ").map(w => w[0]).join("").slice(0,3)}</span>
                   </div>
-                  <span className="max-w-[70px] text-center text-[12px] leading-tight text-sky/40">{name}</span>
+                  <span className="max-w-[70px] text-center text-[12px] leading-tight text-ink/50">{name}</span>
                 </div>
               ))}
             </div>
-            <p className="mt-6 text-[13px] text-sky/40">Encontre abrigos, associacoes e clinicas em toda a Madeira.</p>
+            <p className="mt-6 text-[13px] text-ink/50">Encontre abrigos, associacoes e clinicas em toda a Madeira.</p>
             <Link href="/abrigos" className="mt-4 inline-block rounded-full bg-green-600 px-5 py-2.5 text-[12px] font-semibold text-white transition hover:bg-green-700">Explorar no mapa</Link>
           </div>
           <div className="overflow-hidden rounded-xl border border-line">
@@ -223,28 +228,29 @@ export default async function Home() {
         </div>
       </section>
 
-      {/* JUNTOS */}
       <section className="border-t border-line bg-green-50 py-16 md:py-20">
         <div className="mx-auto max-w-6xl px-5">
           <div className="grid gap-8 md:grid-cols-[1fr_1.8fr]">
             <div>
               <h2 className="font-display text-xl font-bold md:text-2xl">Juntos fazemos a diferenca</h2>
-              <p className="mt-3 text-[13px] leading-relaxed text-sky/40">
+              <p className="mt-3 text-[13px] leading-relaxed text-ink/50">
                 Madeira Animal Help foi criado para ligar pessoas, associacoes, municipios e autoridades em prol do bem-estar animal na Madeira.
               </p>
               <Link href="/sobre" className="mt-5 inline-block rounded-full border border-ink px-5 py-2 text-[12px] font-semibold transition hover:bg-ink hover:text-white">Saber mais sobre nos</Link>
             </div>
             <div className="grid grid-cols-2 gap-3 sm:grid-cols-4">
               {[
-                { icon: "🔷", title: "Independente", desc: "Somos uma plataforma, nao um abrigo nem autoridade publica." },
-                { icon: "🔍", title: "Transparente", desc: "Trabalhamos com clareza e responsabilidade em tudo o que fazemos." },
-                { icon: "🤝", title: "Colaborativo", desc: "Construimos pontes entre pessoas que querem ajudar e quem precisa." },
-                { icon: "🎯", title: "Focado", desc: "O nosso foco e simples: melhorar a vida dos animais da Madeira." },
+                { Icon: Diamond, title: "Independente", desc: "Somos uma plataforma, nao um abrigo nem autoridade publica." },
+                { Icon: Eye, title: "Transparente", desc: "Trabalhamos com clareza e responsabilidade em tudo o que fazemos." },
+                { Icon: Handshake, title: "Colaborativo", desc: "Construimos pontes entre pessoas que querem ajudar e quem precisa." },
+                { Icon: Target, title: "Focado", desc: "O nosso foco e simples: melhorar a vida dos animais da Madeira." },
               ].map((v) => (
                 <div key={v.title} className="rounded-xl border border-line bg-white p-4 text-center">
-                  <span className="text-xl">{v.icon}</span>
+                  <span className="mx-auto flex h-9 w-9 items-center justify-center rounded-lg bg-green-50">
+                    <v.Icon size={16} className="text-green-600" />
+                  </span>
                   <h3 className="mt-2 font-display text-[12px] font-bold">{v.title}</h3>
-                  <p className="mt-1 text-[12px] leading-snug text-sky/35">{v.desc}</p>
+                  <p className="mt-1 text-[12px] leading-snug text-ink/45">{v.desc}</p>
                 </div>
               ))}
             </div>
@@ -252,14 +258,15 @@ export default async function Home() {
         </div>
       </section>
 
-      {/* NEWSLETTER */}
       <section className="bg-green-800">
         <div className="mx-auto flex max-w-6xl flex-col items-center justify-between gap-4 px-5 py-5 sm:flex-row">
           <div className="flex items-center gap-3 text-white">
-            <span className="text-lg">💌</span>
+            <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-white/10">
+              <Mail size={16} />
+            </span>
             <div>
               <h3 className="text-[13px] font-bold">Fica a par de campanhas, historias e novidades.</h3>
-              <p className="text-[13px] text-sky/90">Subscreve a nossa newsletter e ajuda mais animais.</p>
+              <p className="text-[13px] text-white/60">Subscreve a nossa newsletter e ajuda mais animais.</p>
             </div>
           </div>
           <form className="flex w-full gap-2 sm:w-auto" action="#">

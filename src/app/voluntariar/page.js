@@ -25,7 +25,6 @@ export default function VoluntariarPage() {
         <VolunteerCards />
       </section>
 
-      {/* PASSOS */}
       <section className="border-y border-line bg-white py-24 md:py-28">
         <div className="mx-auto max-w-6xl px-5">
           <div className="mb-4 flex items-center gap-2">
@@ -52,7 +51,6 @@ export default function VoluntariarPage() {
         </div>
       </section>
 
-      {/* ABRIGOS */}
       <section className="mx-auto max-w-6xl px-5 py-24 md:py-28">
         <div className="grid items-center gap-14 md:grid-cols-2">
           <div>
@@ -85,8 +83,6 @@ export default function VoluntariarPage() {
           </div>
         </div>
       </section>
-
-      {/* CTA */}
       <section className="border-t border-line">
         <div className="mx-auto flex max-w-6xl flex-wrap items-center justify-between gap-6 px-5 py-10">
           <div>
