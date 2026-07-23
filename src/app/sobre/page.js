@@ -15,13 +15,12 @@ export default function SobrePage() {
           <h1 className="max-w-[18ch] font-display text-4xl font-bold leading-[1.05] tracking-tight md:text-5xl">
             A ponte entre quem precisa e quem pode ajudar<span className="text-green-400">.</span>
           </h1>
-          <p className="mt-4 max-w-[56ch] text-[15px] text-white/60">
+          <p className="mt-4 max-w-[56ch] text-[15px] text-white/90">
             Madeira Animal Help e uma plataforma criada para ligar pessoas, associacoes, municipios e autoridades responsaveis pelo bem-estar animal na Madeira.
           </p>
         </div>
       </section>
 
-      {/* STATS */}
       <section className="border-b border-line">
         <div className="mx-auto grid max-w-6xl grid-cols-2 divide-x divide-y divide-line md:grid-cols-4 md:divide-y-0">
           {[
@@ -36,14 +35,13 @@ export default function SobrePage() {
               </span>
               <div>
                 <div className="font-display text-[14px] font-bold">{s.n}</div>
-                <div className="mt-0.5 text-[12px] leading-snug text-ink/70">{s.l}</div>
+                <div className="mt-0.5 text-[12px] leading-snug text-ink/85">{s.l}</div>
               </div>
             </div>
           ))}
         </div>
       </section>
 
-      {/* QUEM SOMOS */}
       <section className="mx-auto max-w-6xl px-5 py-24 md:py-28">
         <div className="grid gap-14 md:grid-cols-2">
           <div>
@@ -54,7 +52,7 @@ export default function SobrePage() {
             <h2 className="font-display text-2xl font-bold tracking-tight md:text-3xl">
               O que e a Madeira Animal Help.
             </h2>
-            <div className="mt-6 space-y-4 text-[15px] leading-relaxed text-ink/70">
+            <div className="mt-6 space-y-4 text-[15px] leading-relaxed text-ink/90">
               <p>
                 A plataforma foi iniciada pela Madeira Friends juntamente com parceiros locais para tornar mais facil ajudar os animais da ilha.
               </p>
@@ -80,7 +78,7 @@ export default function SobrePage() {
                   <span className="mt-0.5 shrink-0">
                     <Heart size={14} className="text-green-400" />
                   </span>
-                  <span className="text-white/70">{item}</span>
+                  <span className="text-white/100">{item}</span>
                 </div>
               ))}
             </div>
@@ -88,17 +86,16 @@ export default function SobrePage() {
         </div>
       </section>
 
-      {/* MISSAO + VALORES */}
       <section className="border-y border-line bg-white py-24 md:py-28">
         <div className="mx-auto max-w-6xl px-5">
           <div className="grid gap-4 md:grid-cols-2">
             <div className="rounded-xl border border-line p-8 md:p-10">
               <div className="mb-4 flex items-center gap-2">
                 <div className="h-px w-6 bg-green-400" />
-                <span className="text-[11px] font-semibold uppercase tracking-[.15em] text-green-600">Missao</span>
+                <span className="text-[11px] font-semibold uppercase tracking-[.15em] text-green-600">Missão</span>
               </div>
               <h2 className="font-display text-xl font-bold">Informar, ligar, proteger.</h2>
-              <p className="mt-4 text-[15px] leading-relaxed text-ink/60">
+              <p className="mt-4 text-[15px] leading-relaxed text-ink/90">
                 Melhorar a vida dos animais da Madeira atraves de um ponto central de informacao, coordenacao e apoio comunitario.
               </p>
             </div>
@@ -126,7 +123,6 @@ export default function SobrePage() {
         </div>
       </section>
 
-      {/* COM QUEM TRABALHAMOS */}
       <section className="mx-auto max-w-6xl px-5 py-24 md:py-28">
         <div className="mb-4 flex items-center gap-2">
           <div className="h-px w-6 bg-green-400" />
@@ -156,7 +152,6 @@ export default function SobrePage() {
         </div>
       </section>
 
-      {/* HISTORIA */}
       <section className="border-y border-line bg-white py-24 md:py-28">
         <div className="mx-auto max-w-6xl px-5">
           <div className="grid items-center gap-14 md:grid-cols-2">
@@ -166,10 +161,10 @@ export default function SobrePage() {
                 <span className="text-[11px] font-semibold uppercase tracking-[.15em] text-green-600">Percurso</span>
               </div>
               <h2 className="font-display text-2xl font-bold tracking-tight md:text-3xl">Como comecou.</h2>
-              <p className="mt-4 text-[15px] leading-relaxed text-ink/60">
+              <p className="mt-4 text-[15px] leading-relaxed text-sky/80">
                 A Madeira tem muitas pessoas e organizacoes a ajudar animais. Mas a informacao estava espalhada — quem precisava de ajuda nao sabia por onde comecar, e quem queria ajudar nao sabia como.
               </p>
-              <p className="mt-4 text-[15px] leading-relaxed text-ink/60">
+              <p className="mt-4 text-[15px] leading-relaxed text-sky/80">
                 A Madeira Animal Help nasceu da Madeira Friends depois de percebermos o quao dificil era saber quem contactar, onde adotar, como denunciar e onde se voluntariar.
               </p>
             </div>
@@ -181,7 +176,7 @@ export default function SobrePage() {
               ].map((t) => (
                 <div key={t.year} className="flex gap-5 rounded-xl border border-line p-5">
                   <span className="font-display text-2xl font-bold text-green-600">{t.year}</span>
-                  <p className="text-[14px] text-ink/60">{t.text}</p>
+                  <p className="text-[14px] text-sky/80">{t.text}</p>
                 </div>
               ))}
             </div>
@@ -189,7 +184,6 @@ export default function SobrePage() {
         </div>
       </section>
 
-      {/* MADEIRA FRIENDS */}
       <section className="mx-auto max-w-6xl px-5 py-24 md:py-28">
         <div className="rounded-xl bg-green-50 md:flex md:overflow-hidden">
           <div className="flex-1 p-8 md:p-12">
@@ -198,15 +192,15 @@ export default function SobrePage() {
               <span className="text-[11px] font-semibold uppercase tracking-[.15em] text-green-600">Iniciativa</span>
             </div>
             <h2 className="font-display text-2xl font-bold md:text-3xl">Madeira Friends</h2>
-            <p className="mt-4 max-w-[48ch] text-[15px] leading-relaxed text-ink/60">
+            <p className="mt-4 max-w-[48ch] text-[15px] leading-relaxed text-sky/80">
               Uma comunidade de pessoas que vivem, trabalham e criam raizes na Madeira. Locais e recem-chegados, unidos pelo mesmo objetivo.
             </p>
-            <p className="mt-4 max-w-[48ch] text-[15px] leading-relaxed text-ink/60">
+            <p className="mt-4 max-w-[48ch] text-[15px] leading-relaxed text-sky/80">
               A Madeira Animal Help e a nossa iniciativa de bem-estar animal — independente, sem fins lucrativos e movida a voluntarios.
             </p>
             <div className="mt-8 flex flex-wrap gap-3">
-              <a href="https://madeirafriends.com" target="_blank" rel="noopener noreferrer" className="rounded-full bg-green-800 px-6 py-3 text-[13px] font-semibold text-white transition hover:bg-green-700">
-                madeirafriends.com
+              <a href="https://madeirafriends.org" target="_blank" rel="noopener noreferrer" className="rounded-full bg-green-800 px-6 py-3 text-[13px] font-semibold text-white transition hover:bg-green-700">
+                madeirafriends.org
               </a>
               <Link href="/voluntariar" className="rounded-full border border-green-700 px-6 py-3 text-[13px] font-semibold text-green-700 transition hover:bg-green-800 hover:text-white">
                 Quero ajudar
@@ -222,12 +216,11 @@ export default function SobrePage() {
         </div>
       </section>
 
-      {/* CTA */}
       <section className="border-t border-line">
         <div className="mx-auto flex max-w-6xl flex-wrap items-center justify-between gap-6 px-5 py-10">
           <div>
             <h3 className="font-display text-base font-bold">Queres fazer parte?</h3>
-            <p className="mt-1 text-[13px] text-ink/50">Ha muitas formas de ajudar — encontra a tua.</p>
+            <p className="mt-1 text-[13px] text-ink/85">Ha muitas formas de ajudar — encontra a tua.</p>
           </div>
           <div className="flex gap-2">
             <Link href="/voluntariar" className="rounded-full bg-green-600 px-6 py-3 text-[13px] font-semibold text-white transition hover:bg-green-700">

@@ -62,7 +62,7 @@ export default function VoluntariarPage() {
               Ajuda diretamente nos abrigos.
             </h2>
             <p className="mt-3 max-w-[44ch] text-[14px] leading-relaxed text-ink/40">
-              Limpeza, alimentacao, passeios e socializacao — todos os dias, em toda a ilha.
+              Limpeza, alimentação, passeios e socialização — todos os dias, em toda a ilha.
             </p>
             <Link href="/abrigos" className="mt-8 inline-block rounded-full bg-green-800 px-6 py-3 text-[13px] font-semibold text-white transition hover:bg-green-700">
               Ver abrigos

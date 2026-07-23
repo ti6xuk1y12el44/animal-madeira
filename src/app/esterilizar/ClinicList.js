@@ -20,7 +20,7 @@ export default function ClinicList({ parishes, clinics }) {
                   className={`flex w-full items-center justify-between rounded-xl px-4 py-3 text-left text-sm font-medium transition ${
                     active === p
                       ? "bg-ink text-white"
-                      : "border border-line bg-white text-ink/60 hover:border-ink hover:text-ink"
+                      : "border border-line bg-white text-ink/80 hover:border-ink hover:text-ink"
                   }`}
                 >
                   <span>{p}</span>

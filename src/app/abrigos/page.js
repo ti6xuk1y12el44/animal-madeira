@@ -26,9 +26,9 @@ export default async function AbrigosPage() {
             <span className="text-[11px] font-semibold uppercase tracking-[.2em] text-gold">Rede</span>
           </div>
           <h1 className="max-w-[18ch] font-display text-4xl font-bold leading-[1.05] tracking-tight md:text-5xl">
-            Abrigos e associacoes<span className="text-gold">.</span>
+            Abrigos e associa<span className="text-gold">.</span>
           </h1>
-          <p className="mt-4 max-w-[52ch] text-[15px] text-white/40">
+          <p className="mt-4 max-w-[52ch] text-[15px] text-sky/10">
             O coracao do bem-estar animal na Madeira. Quase todos funcionam com voluntarios e vivem de donativos.
           </p>
         </div>
@@ -81,7 +81,7 @@ export default async function AbrigosPage() {
         <div className="mx-auto flex max-w-6xl flex-wrap items-center justify-between gap-6 px-5 py-12">
           <div>
             <h3 className="font-display text-lg font-bold">Emergencia com um animal?</h3>
-            <p className="mt-1 text-[13px] text-ink/35">Os bombeiros (112) resgatam animais em perigo imediato.</p>
+            <p className="mt-1 text-[13px] text-sky/15">Os bombeiros (112) resgatam animais em perigo imediato.</p>
           </div>
           <Link href="/emergencia" className="rounded-full bg-green-800 px-6 py-3 text-sm font-semibold text-white transition hover:bg-green-700">
             Ver contactos

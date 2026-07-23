@@ -11,7 +11,6 @@ export default async function Home() {
     .eq("adopted", false)
     .order("created_at", { ascending: false })
     .limit(6);
-
   return (
     <main>
       <section className="relative min-h-[80vh] overflow-hidden">
@@ -38,7 +37,6 @@ export default async function Home() {
           </div>
         </div>
       </section>
-
       <section className="mx-auto max-w-6xl px-5 py-16 md:py-20">
         <h2 className="mb-10 text-center font-display text-xl font-bold md:text-2xl">Como queres ajudar?</h2>
         <div className="grid grid-cols-3 gap-4 md:grid-cols-6">
@@ -46,8 +44,8 @@ export default async function Home() {
             { href: "/adotar", Icon: Heart, label: "Adotar", sub: "Caes e gatos a espera de uma familia." },
             { href: "/esterilizar", Icon: Scissors, label: "Esterilizar", sub: "Campanhas e clinicas em cada concelho." },
             { href: "/voluntariar", Icon: HandHeart, label: "Voluntariar", sub: "Acolhe, transporta ou da o teu tempo." },
-            { href: "/denunciar", Icon: AlertTriangle, label: "Denunciar", sub: "Abandono ou maus-tratos. Sempre confidencial.", arrow: true },
-            { href: "/emergencia", Icon: Phone, label: "Emergencia", sub: "Contactos certos para cada situacao.", arrow: true },
+            { href: "/denunciar", Icon: AlertTriangle, label: "Denunciar", sub: "Abandono ou maus-tratos. Sempre confidencial."},
+            { href: "/emergencia", Icon: Phone, label: "Emergencia", sub: "Contactos certos para cada situacao."},
             { href: "/abrigos", Icon: HomeIcon, label: "Abrigos", sub: "Conhece as associacoes e como ajudar." },
           ].map((a) => (
             <Link key={a.href} href={a.href} className="group flex flex-col items-center gap-2 rounded-xl border border-line bg-white px-3 py-5 text-center transition hover:-translate-y-0.5 hover:shadow-md">
@@ -61,7 +59,6 @@ export default async function Home() {
           ))}
         </div>
       </section>
-
       <section className="border-y border-line bg-white">
         <div className="mx-auto grid max-w-6xl grid-cols-2 divide-x divide-y divide-line md:grid-cols-4 md:divide-y-0">
           {[
@@ -82,7 +79,6 @@ export default async function Home() {
           ))}
         </div>
       </section>
-
       <section className="mx-auto max-w-6xl px-5 py-16 md:py-20">
         <div className="mb-8 flex items-end justify-between gap-4">
           <h2 className="font-display text-xl font-bold md:text-2xl">A espera de uma familia</h2>
@@ -114,12 +110,11 @@ export default async function Home() {
           })}
         </div>
       </section>
-
       <section className="bg-green-50 py-16 md:py-20">
         <div className="mx-auto max-w-6xl px-5">
           <div className="mb-8 flex items-end justify-between gap-4">
             <h2 className="flex items-center gap-2 font-display text-xl font-bold md:text-2xl">
-              Historias que mudam vidas <Heart size={18} className="text-green-600" />
+              Historias que mudam vidas.
             </h2>
             <span className="text-[13px] font-semibold text-green-600">Ver todas as historias →</span>
           </div>
@@ -146,7 +141,6 @@ export default async function Home() {
           </div>
         </div>
       </section>
-
       <section className="mx-auto max-w-6xl px-5 py-16 md:py-20">
         <div className="grid overflow-hidden rounded-xl md:grid-cols-2">
           <div className="flex gap-4 bg-green-800 p-6 text-white md:p-8">
@@ -171,7 +165,6 @@ export default async function Home() {
           </div>
         </div>
       </section>
-
       <section className="border-t border-line bg-white py-16 md:py-20">
         <div className="mx-auto max-w-6xl px-5">
           <div className="mb-8 flex items-end justify-between gap-4">
@@ -202,7 +195,6 @@ export default async function Home() {
           </div>
         </div>
       </section>
-
       <section className="mx-auto max-w-6xl px-5 py-16 md:py-20">
         <div className="mb-8 flex items-end justify-between gap-4">
           <h2 className="font-display text-xl font-bold md:text-2xl">Abrigos e associacoes</h2>
@@ -226,7 +218,6 @@ export default async function Home() {
           <MadeiraMap />
         </div>
       </section>
-
       <section className="border-t border-line bg-green-50 py-16 md:py-20">
         <div className="mx-auto max-w-6xl px-5">
           <div className="grid gap-8 md:grid-cols-[1fr_1.8fr]">
@@ -256,7 +247,6 @@ export default async function Home() {
           </div>
         </div>
       </section>
-
       <section className="bg-green-800">
         <div className="mx-auto flex max-w-6xl flex-col items-center justify-between gap-4 px-5 py-5 sm:flex-row">
           <div className="flex items-center gap-3 text-white">
@@ -277,7 +267,6 @@ export default async function Home() {
     </main>
   );
 }
-
 function AnimalPhoto({ src, alt }) {
   return <img src={src} alt={alt} className="h-full w-full object-cover transition duration-500 group-hover:scale-[1.03]" />;
 }

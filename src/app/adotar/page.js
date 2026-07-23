@@ -34,7 +34,7 @@ export default async function AdotarPage({ searchParams }) {
 
   return (
     <main>
-      {/* HEADER */}
+
       <section className="relative overflow-hidden bg-green-900 py-14 md:py-16">
         <div className="mx-auto grid max-w-6xl items-center gap-8 px-5 md:grid-cols-[1.3fr_0.7fr]">
           <div>
@@ -42,7 +42,7 @@ export default async function AdotarPage({ searchParams }) {
             <h1 className="font-display text-3xl font-bold leading-[1.08] tracking-tight text-white md:text-4xl">
               Encontra o teu novo melhor amigo<span className="text-gold">.</span>
             </h1>
-            <p className="mt-3 max-w-[48ch] text-[14px] text-white/45">
+            <p className="mt-3 max-w-[48ch] text-[14px] text-white/75">
               Todos os animais sao avaliados por um veterinario. Quando adotas, mudas duas vidas.
             </p>
           </div>
@@ -53,19 +53,17 @@ export default async function AdotarPage({ searchParams }) {
       </section>
 
       <section className="mx-auto max-w-6xl px-5 py-10 md:py-14">
-        {/* SEARCH + SORT */}
         <div className="mb-6 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
           <form className="flex flex-1 gap-2" action="/adotar">
             <HiddenParams params={params} exclude="q" />
             <input name="q" defaultValue={params.q || ""} placeholder="Pesquisar por nome..." className="flex-1 rounded-lg border border-line bg-white px-4 py-2.5 text-[13px] outline-none transition focus:border-green-400" />
           </form>
           <div className="flex items-center gap-3">
-            <span className="text-[13px] font-semibold text-ink/40">{count} animais encontrados</span>
+            <span className="text-[13px] font-semibold text-ink/85">{count} animais encontrados</span>
           </div>
         </div>
 
         <div className="grid gap-8 lg:grid-cols-[220px_1fr]">
-          {/* SIDEBAR FILTROS */}
           <aside className="space-y-5">
             <div className="flex items-center justify-between">
               <h2 className="font-display text-base font-bold">Filtrar</h2>
@@ -156,8 +154,6 @@ export default async function AdotarPage({ searchParams }) {
           </div>
         </div>
       </section>
-
-      {/* CTA */}
       <section className="bg-green-800">
         <div className="mx-auto flex max-w-6xl flex-col items-center justify-between gap-4 px-5 py-5 sm:flex-row">
           <p className="text-[13px] text-white/60">Nao podes adotar agora? Podes ajudar na mesma. Torna-te voluntario, acolhe temporariamente ou faz um donativo.</p>

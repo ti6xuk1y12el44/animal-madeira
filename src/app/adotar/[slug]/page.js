@@ -36,7 +36,7 @@ export default async function AnimalPage({ params }) {
   return (
     <main>
       <div className="mx-auto max-w-6xl px-5 py-8">
-        <Link href="/adotar" className="text-[13px] font-semibold text-ink/40 transition hover:text-ink">
+        <Link href="/adotar" className="text-[13px] font-semibold text-ink/80 transition hover:text-ink">
           Voltar a todos os animais
         </Link>
       </div>
@@ -79,7 +79,7 @@ export default async function AnimalPage({ params }) {
             {animal.description && (
               <div className="mt-8">
                 <h2 className="font-display text-base font-bold">Sobre</h2>
-                <p className="mt-2 max-w-[50ch] text-[15px] leading-relaxed text-ink/50">{animal.description}</p>
+                <p className="mt-2 max-w-[50ch] text-[15px] leading-relaxed text-ink/75">{animal.description}</p>
               </div>
             )}
 
@@ -93,10 +93,10 @@ export default async function AnimalPage({ params }) {
             <div className="mt-8 rounded-2xl bg-green-50 p-6">
               <span className="text-[11px] font-semibold uppercase tracking-[.12em] text-green-600">Abrigo</span>
               <h3 className="mt-1 font-display text-lg font-bold">{animal.shelters?.name}</h3>
-              <p className="mt-0.5 text-[13px] text-ink/40">{animal.shelters?.parish}</p>
+              <p className="mt-0.5 text-[13px] text-ink/80 text-[14px]">{animal.shelters?.parish}</p>
               <div className="mt-4 flex flex-col gap-1 text-[13px]">
-                {shelterPhone && <span className="font-display font-bold">{shelterPhone}</span>}
-                {shelterEmail && <span className="text-ink/40">{shelterEmail}</span>}
+                {shelterPhone && <span className="font-display font-bold text-ink/80 text-[14px]">{shelterPhone}</span>}
+                {shelterEmail && <span className="text-ink/80 text-[14px]">{shelterEmail}</span>}
               </div>
             </div>
 
@@ -105,8 +105,8 @@ export default async function AnimalPage({ params }) {
               {shelterEmail && <EmailButton email={shelterEmail} name={animal.name} />}
             </div>
 
-            <p className="mt-4 text-[12px] text-ink/30">
-              Contacta o abrigo diretamente para saber mais sobre o processo de adocao.
+            <p className="mt-4 text-[12px] text-ink/80">
+              Contacta o abrigo diretamente para saber mais sobre o processo de adoção.
             </p>
           </div>
         </div>
