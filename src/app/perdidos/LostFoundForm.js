@@ -1,6 +1,9 @@
 "use client";
+import PhotoUpload from "@/components/PhotoUpload";
 import { useActionState } from "react";
 import { submitLostFound } from "@/actions/lost-found";
+
+const [photoUrl, setPhotoUrl] = useState(null);
 
 export default function LostFoundForm({ type, onClose }) {
   const [state, action, pending] = useActionState(submitLostFound, {});
@@ -88,7 +91,11 @@ export default function LostFoundForm({ type, onClose }) {
         />
         {state.errors?.contact_phone && <p className="mt-1 text-xs text-red-500">{state.errors.contact_phone}</p>}
       </div>
-
+<div>
+        <label className="mb-1.5 block text-[13px] font-semibold">Foto (opcional)</label>
+        <PhotoUpload onUpload={(url) => setPhotoUrl(url)} />
+        <input type="hidden" name="photo" value={photoUrl || ""} />
+      </div>
       <button
         type="submit"
         disabled={pending}

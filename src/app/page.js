@@ -2,6 +2,7 @@ import Link from "next/link";
 import { supabasePublic } from "@/lib/supabase/server";
 import { Heart, Scissors, HandHeart, AlertTriangle, Phone, Home as HomeIcon, MapPin, Users, Diamond, Eye, Handshake, Target, Mail } from "lucide-react";
 import MadeiraMap from "@/components/MadeiraMap";
+import NewsletterForm from "@/components/NewsletterForm";
 
 export default async function Home() {
   const supabase = supabasePublic();
@@ -248,21 +249,7 @@ export default async function Home() {
         </div>
       </section>
       <section className="bg-green-800">
-        <div className="mx-auto flex max-w-6xl flex-col items-center justify-between gap-4 px-5 py-5 sm:flex-row">
-          <div className="flex items-center gap-3 text-white">
-            <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-white/10">
-              <Mail size={16} />
-            </span>
-            <div>
-              <h3 className="text-[13px] font-bold">Fica a par de campanhas, historias e novidades.</h3>
-              <p className="text-[13px] text-white/60">Subscreve a nossa newsletter e ajuda mais animais.</p>
-            </div>
-          </div>
-          <form className="flex w-full gap-2 sm:w-auto" action="#">
-            <input type="email" required placeholder="O teu email" className="min-w-0 flex-1 rounded-full border border-white/15 bg-white/10 px-4 py-2 text-[13px] text-white placeholder-white/30 outline-none sm:w-56" />
-            <button type="submit" className="shrink-0 rounded-full bg-white px-5 py-2 text-[13px] font-semibold text-green-800 transition hover:bg-green-50">Subscrever</button>
-          </form>
-        </div>
+        <NewsletterForm />
       </section>
     </main>
   );

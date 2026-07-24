@@ -21,6 +21,7 @@ export async function submitLostFound(prevState, formData) {
     parish: data.parish,
     description: data.description || null,
     contact_phone: data.contact_phone,
+    photo: data.photo || null,
   });
 
   if (error) {
