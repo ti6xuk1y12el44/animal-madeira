@@ -154,7 +154,7 @@ export default function EditAnimalPage({ params }) {
           disabled={loading}
           className="w-full rounded-full bg-green-600 py-3.5 text-sm font-semibold text-white transition hover:bg-green-700 disabled:opacity-50"
         >
-          {loading ? "A guardar..." : "Guardar alteracoes"}
+          {loading ? "A guardar..." : "Guardar alterações"}
         </button>
       </form>
     </main>

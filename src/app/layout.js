@@ -1,7 +1,6 @@
 import { Space_Grotesk, DM_Sans } from "next/font/google";
 import "./globals.css";
-import Navbar from "@/components/Navbar";
-import Footer from "@/components/Footer";
+import NavFooterWrapper from "@/components/NavFooterWrapper";
 
 const display = Space_Grotesk({
   subsets: ["latin"],
@@ -17,16 +16,16 @@ const body = DM_Sans({
 
 export const metadata = {
   title: "Animal Madeira",
-  description: "Adoção, esterilização, voluntariado e emergências animais na Madeira.",
+  description: "Adocao, esterilizacao, voluntariado e emergencias animais na Madeira.",
 };
 
 export default function RootLayout({ children }) {
   return (
     <html lang="pt" className={`${display.variable} ${body.variable}`}>
       <body className="antialiased">
-        <Navbar />
-        {children}
-        <Footer />
+        <NavFooterWrapper>
+          {children}
+        </NavFooterWrapper>
       </body>
     </html>
   );
