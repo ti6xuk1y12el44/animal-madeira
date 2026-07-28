@@ -3,9 +3,8 @@ import PhotoUpload from "@/components/PhotoUpload";
 import { useActionState } from "react";
 import { submitLostFound } from "@/actions/lost-found";
 
-const [photoUrl, setPhotoUrl] = useState(null);
-
 export default function LostFoundForm({ type, onClose }) {
+  const [photoUrl, setPhotoUrl] = useState(null);
   const [state, action, pending] = useActionState(submitLostFound, {});
 
   if (state.success) {
